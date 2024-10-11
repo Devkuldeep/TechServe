@@ -1,0 +1,79 @@
+:root {
+    --background-color: #0A0A0A;
+    --secondary-color: #111824;
+    --tertiary-color: #111824;
+    --accent-color: #322C8C;
+    --accent-color-2: #BE123C;
+    --accent-color-3: #111827;
+    --accent-color-4: #141C2B;
+    --accent-color-5: #1F2937;
+}
+
+
+
+{ name: "TechCorp", logo: "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" },
+{ name: "InnovateTech", logo: "https://images.pexels.com/photos/1181467/pexels-photo-1181467.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" },
+{ name: "FutureSystems", logo: "https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" },
+{ name: "GlobalTech", logo: "https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" },
+{ name: "NextGen Solutions", logo: "https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" },
+{ name: "SmartTech", logo: "https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" },
+
+
+
+
+
+
+
+<motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 1 }}
+        className="absolute bottom-1 lg:bottom-12 w-full flex justify-center flex-col items-center"
+      >
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 1.2 }}
+          className="text-white mb-4 overflow-hidden flex justify-between "
+          style={{
+            width: '100%',
+          }}
+        >
+          <motion.div
+            animate={{
+              x: [0, -100],
+            }}
+            transition={{
+              x: {
+                repeat: Infinity,
+                repeatType: "loop",
+                duration: 5,
+                ease: "linear",
+              },
+            }}
+            style={{
+              width: '100',
+              display: 'flex ',
+              justifyContent: 'space-between',
+            }}
+          >
+            <span className='text-white inline-block font-bold text-8xl ' style={{ width: '200px', whiteSpace: 'nowrap', marginRight: '100px' }}>Feel Free To Contact Us</span>
+            <span className='text-white inline-block  font-bold text-8xl ' style={{ width: '200px', whiteSpace: 'nowrap', marginRight: '100px' }}>Feel Free To Contact Us</span>
+           
+          </motion.div>
+        </motion.div>
+        <motion.svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="40"
+          height="40"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="text-white animate-bounce"
+        >
+          <path d="M12 5v14M19 12l-7 7-7-7" />
+        </motion.svg>
+      </motion.div>
