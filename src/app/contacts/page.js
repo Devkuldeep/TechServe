@@ -81,29 +81,7 @@ function HeaderSection() {
             ))}
           </p>
         </motion.div>
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-12 flex justify-center space-x-4"
-        >
-          <button 
-            className="bg-[#FF4D6D] text-white px-6 py-3 rounded-full hover:bg-[#FF6B6B] transition duration-300"
-            onClick={() => {
-              const contactForm = document.querySelector('#contact-form');
-              if (contactForm) {
-                contactForm.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
-          >
-            Get In Touch
-          </button>
-          <Link href="/about">
-            <button className="bg-transparent border-2 border-[#4361EE] text-[#4361EE] px-6 py-3 rounded-full hover:bg-[#4361EE] hover:text-white transition duration-300">
-              Learn More
-            </button>
-          </Link>
-        </motion.div>
+     
       </div>
      
 
@@ -111,7 +89,7 @@ function HeaderSection() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 1.5 }}
-        className="absolute bottom-12 w-full flex justify-center flex-col items-center"
+        className="absolute bottom-0 w-full flex justify-center flex-col items-center"
       >
         <motion.div
           initial={{ opacity: 0 }}
@@ -305,9 +283,9 @@ function ContactForm() {
           viewport={{ once: true }}
         >
           <h2 className="text-5xl lg:text-7xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#3D37AF] to-[#DE317F]">
-            Let's Create Something Amazing
+            Let&s Create Something Amazing
           </h2>
-          <p className="text-xl text-gray-300">We're excited to hear about your project. Reach out and let's innovate together!</p>
+          <p className="text-xl text-gray-300">We&apos;re excited to hear about your project. Reach out and let&apos;s innovate together!</p>
         </motion.div>
         
         <motion.div 

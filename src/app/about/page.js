@@ -269,7 +269,7 @@ export default function About() {
           </p>
           <ul className="mt-4 space-y-2 text-gray-300">
             <li className="flex items-center">
-              <span className="text-[#4361EE] mr-2">✓</span> Tailoring solutions to each client's unique needs
+              <span className="text-[#4361EE] mr-2">✓</span> Tailoring solutions to each client&apos;s unique needs
             </li>
             <li className="flex items-center">
               <span className="text-[#4361EE] mr-2">✓</span> Staying ahead of technological trends
@@ -525,7 +525,7 @@ function CareersSection() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mt-20 text-center"
         >
-          <p className="text-2xl text-gray-300 mb-8">Don't see a position that fits your skills?</p>
+          <p className="text-2xl text-gray-300 mb-8">Don&apos;t see a position that fits your skills?</p>
           <motion.button 
             whileHover={{ scale: 1.05, backgroundColor: "#5651E5" }}
             whileTap={{ scale: 0.95 }}

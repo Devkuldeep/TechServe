@@ -279,7 +279,7 @@ function ServiceSection() {
         >
           {[
             { title: "Web Development", description: "Cutting-edge websites and web applications that captivate your audience and drive conversions.", icon: "🌐" },
-            { title: "App Development", description: "Powerful mobile solutions that keep your business at your customers' fingertips.", icon: "📱" },
+            { title: "App Development", description: "Powerful mobile solutions that keep your business at your customers fingertips.", icon: "📱" },
             { title: "UI/UX Design", description: "Stunning interfaces that blend aesthetics with functionality for an unparalleled user experience.", icon: "🎨" },
             { title: "Video Production", description: "Compelling visual narratives that bring your brand story to life and engage your audience.", icon: "🎥" },
             { title: "Digital Marketing", description: "Data-driven strategies to amplify your online presence and accelerate business growth.", icon: "📈" },
@@ -563,7 +563,7 @@ function CallToActionSection() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-xl mb-8"
           >
-            Let's discuss how our innovative tech solutions can empower your business and drive growth.
+            Let&apos;s discuss how our innovative tech solutions can empower your business and drive growth.
           </motion.p>
           <motion.a
             href="/contacts"

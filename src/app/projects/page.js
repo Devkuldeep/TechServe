@@ -96,7 +96,7 @@ function HeaderSection() {
           <h2 className="text-3xl font-bold text-[#edecec] sm:text-4xl">Our Impact in Numbers</h2>
 
           <p className="mt-4 text-gray-300 sm:text-xl">
-            We've helped businesses across various industries achieve their goals through innovative technology solutions. Here's a snapshot of our impact.
+            We&apos;ve helped businesses across various industries achieve their goals through innovative technology solutions. Here&apos;s a snapshot of our impact.
           </p>
         </div>
 

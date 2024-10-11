@@ -463,7 +463,7 @@ function AboutSection() {
           >
             <h2 className="text-3xl font-bold sm:text-4xl text-white"> Techserve</h2>
             <p className="mt-4 text-gray-300">
-              At Techserve, we're passionate about leveraging technology to drive business growth. With years of experience and a team of skilled professionals, we deliver innovative solutions tailored to your unique needs.
+              At Techserve, we&apos;re passionate about leveraging technology to drive business growth. With years of experience and a team of skilled professionals, we deliver innovative solutions tailored to your unique needs.
             </p>
             <motion.a
               href="/about"
@@ -509,7 +509,7 @@ function TestimonialSection() {
     {
       name: "John Doe",
       role: "CEO, TechCorp",
-      content: "Techserve's solutions have revolutionized our operations. Their expertise is unmatched!",
+      content: "Techserve&apos;s solutions have revolutionized our operations. Their expertise is unmatched!",
       image: "https://randomuser.me/api/portraits/men/1.jpg"
     },
     {
@@ -661,7 +661,7 @@ function FeatureSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Our cutting-edge technology and expert team deliver tailored solutions to drive your business forward. From web development to digital marketing, we've got you covered.
+              Our cutting-edge technology and expert team deliver tailored solutions to drive your business forward. From web development to digital marketing, we&apos;ve got you covered.
             </motion.p>
 
             <motion.a
@@ -722,7 +722,7 @@ function FAQSection() {
               answer: "Techserve has experience working with a diverse range of industries including e-commerce, healthcare, finance, education, and more. Our versatile team adapts our solutions to meet the specific requirements of each sector."
             },
             {
-              question: "How can Techserve help improve my business's online presence?",
+              question: "How can Techserve help improve my business&apos;s online presence?",
               answer: "We offer comprehensive digital marketing services, including SEO, social media management, and content creation. Our strategies are designed to increase your online visibility, engage your target audience, and drive conversions."
             }
           ].map((faq, index) => (
@@ -804,7 +804,7 @@ function CallToActionSection() {
               Ready to Transform Your Digital Presence?
             </h3>
             <p className="mt-4 text-xl">
-              Partner with Techserve to unlock innovative tech solutions tailored to your business needs. From web development to digital marketing, we're here to help you optimize your online presence and drive growth.
+              Partner with Techserve to unlock innovative tech solutions tailored to your business needs. From web development to digital marketing, we&apos;re here to help you optimize your online presence and drive growth.
             </p>
             <motion.div
               className="mt-8"
@@ -818,7 +818,7 @@ function CallToActionSection() {
                   boxShadow: '0 4px 6px rgba(59, 130, 246, 0.5), 0 1px 3px rgba(0, 0, 0, 0.1)',
                 }}
               >
-                Let's Talk
+                Let&apos;s Talk
               </Link>
             </motion.div>
           </motion.div>
