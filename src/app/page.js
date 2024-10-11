@@ -198,9 +198,9 @@ function ServiceSection() {
     transition={{ duration: 0.8, delay: 0.2 }}
   >
     <h2 className="text-4xl lg:text-6xl font-bold text-left text-white">Service Section</h2>
-    <section className="bg-gray-900 rounded-xl">
+    <section className="bg-gray-900 rounded-xl mx-auto">
 
-      <div className="max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
+      <div className="max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16 mx-auto">
         <div className="grid grid-cols-1 gap-y-8 lg:grid-cols-2 lg:items-center lg:gap-x-16">
           <div className="mx-auto max-w-lg text-center lg:mx-0 ltr:lg:text-left rtl:lg:text-right">
             <h3 className="text-2xl font-bold sm:text-4xl">Our Tech Solutions</h3>
@@ -372,24 +372,69 @@ function ProjectSection() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
   const x = useTransform(scrollYProgress, [0, 0.5], [-50, 0]);
 
-  return <motion.div
-    ref={ref}
-    style={{ opacity, x }}
+  const projects = [
+    { title: "E-commerce Platform", description: "A brief description of Project 1", imageUrl: "/images/p1.png", technologies: ['React', 'Node.js', 'MongoDB'] },
+    { title: "Social Media Dashboard", description: "An overview of Project 2", imageUrl: "/images/p2.png", technologies: ['Vue.js', 'Express', 'PostgreSQL'] },
+    { title: "Task Management System", description: "Details about Project 3", imageUrl: "/images/p3.png", technologies: ['Angular', 'Django', 'MySQL'] },
+    { title: "Mobile Fitness App", description: "Highlights of Project 4", imageUrl: "/images/p4.png", technologies: ['React Native', 'Firebase', 'GraphQL'] },
+    { title: "Portfolio Website", description: "Key features of Project 5", imageUrl: "/images/p5.png", technologies: ['Next.js', 'Tailwind CSS', 'Supabase'] },
+    { title: "Real-time Chat Application", description: "Summary of Project 6", imageUrl: "/images/p6.png", technologies: ['Svelte', 'FastAPI', 'Redis'] },
+    { title: "Cross-platform Mobile Game", description: "Main aspects of Project 7", imageUrl: "/images/p7.png", technologies: ['Flutter', 'Spring Boot', 'Elasticsearch'] },
+    { title: "Microservices Architecture", description: "Core elements of Project 8", imageUrl: "/images/p8.png", technologies: ['TypeScript', 'NestJS', 'Docker'] },
+    { title: "Headless CMS Blog", description: "Unique features of Project 9", imageUrl: "/images/p1.png", technologies: ['Gatsby', 'Strapi', 'AWS'] },
+  ];
 
-  >
-    <h2 className="text-4xl lg:text-6xl font-bold text-left text-white my-4 py-4 px-6">Project Section</h2>
-    <div className="flex overflow-x-scroll gap-4 p-8">
-      <Cards />
-      <Cards />
-      <Cards />
-      <Cards />
-      <Cards />
-      <Cards />
-      <Cards />
-      <Cards />
-      <Cards />
-    </div>
-  </motion.div>;
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const variants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate="visible"
+      transition={{ duration: 0.8 }}
+      className="relative"
+    >
+      <h2 className="text-4xl lg:text-6xl font-bold text-left text-white my-4 py-4 px-6">Project Section</h2>
+      
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((project, index) => (
+            <motion.div
+              key={index}
+              variants={variants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <Cards
+                title={project.title}
+                description={project.description}
+                imageUrl={project.imageUrl}
+                technologies={project.technologies}
+              />
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </motion.div>
+  );
 }
 
 function AboutSection() {
@@ -465,19 +510,19 @@ function TestimonialSection() {
       name: "John Doe",
       role: "CEO, TechCorp",
       content: "Techserve's solutions have revolutionized our operations. Their expertise is unmatched!",
-      image: "/images/testimonial1.jpg"
+      image: "https://randomuser.me/api/portraits/men/1.jpg"
     },
     {
       name: "Jane Smith",
       role: "Marketing Director, InnovateCo",
       content: "The team at Techserve truly understands digital marketing. Our online presence has never been stronger.",
-      image: "/images/testimonial2.jpg"
+      image: "https://randomuser.me/api/portraits/women/2.jpg"
     },
     {
       name: "Mike Johnson",
       role: "CTO, FutureTech",
       content: "Implementing Techserve's custom software solution has increased our productivity tenfold.",
-      image: "/images/testimonial3.jpg"
+      image: "https://randomuser.me/api/portraits/men/3.jpg"
     }
   ];
 
@@ -505,7 +550,7 @@ function TestimonialSection() {
       transition={{ duration: 0.8 }}
     >
       <h2 className="text-4xl lg:text-6xl font-bold text-left text-white my-4 py-4 px-6">Testimonial</h2>
-      <section className="bg-gradient-to-b from-gray-900 to-gray-800 text-white py-16">
+      <section className="bg-gradient-to-b from-gray-900 to-gray-800 text-white py-16 w-full" >
         <h2 className="sr-only">Testimonial Section</h2>
         <div className="max-w-screen-xl px-4 mx-auto text-center lg:px-6">
           <motion.div
@@ -535,7 +580,7 @@ function TestimonialSection() {
                   className="p-6 bg-gray-800 rounded-lg shadow-xl flex-shrink-0 w-full md:w-1/2 lg:w-1/3"
                   style={{ marginRight: "2rem" }}
                 >
-                  <Image
+                  <img
                     className="w-20 h-20 mx-auto mb-4 rounded-full"
                     src={testimonial.image}
                     alt={testimonial.name}
@@ -763,19 +808,18 @@ function CallToActionSection() {
             </p>
             <motion.div
               className="mt-8"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              
             >
-              <a
-                href="contacts"
-                className="inline-block rounded-md bg-gradient-to-r from-pink-400 to-pink-600 px-8 py-3 text-lg font-medium text-white shadow-md transition-all duration-300 hover:from-pink-500 hover:to-pink-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2 active:shadow-inner "
+              <Link
+                href="/contacts"
+                className="inline  rounded-md bg-blue-500 px-8 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-300 hover:from-blue-600 hover:to-purple-700 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 active:shadow-inner"
                 style={{
-                  textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)',
-                  boxShadow: '0 4px 6px rgba(255, 105, 180, 0.25), 0 1px 3px rgba(0, 0, 0, 0.08)',
+                  textShadow: '1px 1px 2px rgba(0, 0, 0, 0.3)',
+                  boxShadow: '0 4px 6px rgba(59, 130, 246, 0.5), 0 1px 3px rgba(0, 0, 0, 0.1)',
                 }}
               >
                 Let's Talk
-              </a>
+              </Link>
             </motion.div>
           </motion.div>
 
