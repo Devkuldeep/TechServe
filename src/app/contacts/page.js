@@ -3,9 +3,10 @@
 import React, { useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Link from 'next/link';
+import {LightGreenButton, WhiteButton, GreenWhiteButton} from "@/components/utilities/Buttons";
 export default function Contacts() {
   return (
-    <div className="bg-[#0A0A0A] min-h-screen pt-16">
+    <div className=" min-h-screen pt-16">
       <HeaderSection />      
       <ContactForm />
       <MapSection />
@@ -28,11 +29,11 @@ function HeaderSection() {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="bg-[#12141A] text-gray-50 py-24 min-h-screen relative" 
+      className="text-gray-50 py-24 min-h-screen relative" 
     >
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-        <div className="absolute top-10 left-10 w-20 h-20 bg-[#FF4D6D] rounded-full opacity-20 animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-32 h-32 bg-[#4361EE] rounded-full opacity-20 animate-pulse"></div>
+        <div className="absolute top-10 left-10 w-20 h-20 rounded-full opacity-20 animate-pulse"></div>
+        <div className="absolute bottom-20 right-20 w-32 h-32  rounded-full opacity-20 animate-pulse"></div>
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.h1 
@@ -118,8 +119,10 @@ function HeaderSection() {
               justifyContent: 'space-between',
             }}
           >
-            <span className='text-white inline-block font-bold text-4xl md:text-6xl lg:text-6xl' style={{ whiteSpace: 'nowrap', marginRight: '100px' }}>Feel Free To Contact Us</span>
-            <span className='text-white inline-block font-bold text-4xl md:text-6xl lg:text-6xl' style={{ whiteSpace: 'nowrap', marginRight: '100px' }}>Feel Free To Contact Us</span>
+            <span className='text-darkGreenTextColor  inline-block font-bold text-4xl md:text-6xl lg:text-6xl' style={{ whiteSpace: 'nowrap', marginRight: '100px' }}>Feel Free To Contact Us</span>
+
+            <span className='text-darkGreenTextColor  inline-block font-bold text-4xl md:text-6xl lg:text-6xl' style={{ whiteSpace: 'nowrap', marginRight: '100px' }}>Feel Free To Contact Us</span>
+
           </motion.div>
         </motion.div>
         <motion.svg
@@ -132,7 +135,7 @@ function HeaderSection() {
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="text-white animate-bounce"
+          className="text-darkGreenTextColor animate-bounce"
         >
           <path d="M12 5v14M19 12l-7 7-7-7" />
         </motion.svg>
@@ -161,7 +164,7 @@ function ContactInfoSection() {
 
   return (
     <section 
-      className="py-12 lg:py-20 bg-gradient-to-b from-[#111824] to-[#0A0A0A] relative overflow-hidden"
+      className="py-12 lg:py-20 relative overflow-hidden"
       onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
@@ -172,16 +175,16 @@ function ContactInfoSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-4xl lg:text-5xl font-extrabold text-center mb-16 text-white"
+          className="text-4xl lg:text-5xl font-extrabold text-center mb-16 text-darkGreenTextColor "
         >
-          Get in Touch{<br/>}with <span className=" bg-clip-text text-transparent bg-gradient-to-r from-[#3D37AF] to-[#DE317F]">Techserve</span>
+          Get in Touch{<br/>}with <span className=" bg-clip-text  ">Techserve</span>
         </motion.h2>
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="bg-[#111824] p-8 rounded-xl shadow-lg"
+          className="bg-darkGreen2 p-8 rounded-xl shadow-lg"
         >
           <div className="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 md:space-x-8">
             {[
@@ -229,7 +232,7 @@ function ContactInfoSection() {
           transition={{ duration: 0.6, delay: 0.6 }}
           viewport={{ once: true }}
         >
-          <h3 className="text-2xl lg:text-3xl font-semibold mb-6 text-white">Connect With Us</h3>
+          <h3 className="text-2xl lg:text-3xl font-semibold mb-6 text-darkGreenTextColor     ">Connect With Us</h3>
           <div className="flex justify-center space-x-6">
             {[
               { icon: "facebook", url: "https://facebook.com" },
@@ -273,7 +276,7 @@ function ContactInfoSection() {
 
 function ContactForm() {
   return (
-    <section id='contact-form' className="bg-gradient-to-br from-[#0A0A0A] to-[#1A1A1A] text-gray-50 py-12 relative overflow-hidden">
+    <section id='contact-form' className=" py-12 relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           className="text-center mb-12"
@@ -283,13 +286,13 @@ function ContactForm() {
           viewport={{ once: true }}
         >
           <h2 className="text-5xl lg:text-7xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#3D37AF] to-[#DE317F]">
-            Let&s Create Something Amazing
+            Let&apos;s Create Something Amazing
           </h2>
           <p className="text-xl text-gray-300">We&apos;re excited to hear about your project. Reach out and let&apos;s innovate together!</p>
         </motion.div>
         
         <motion.div 
-          className="bg-[#111824] rounded-lg shadow-2xl overflow-hidden"
+          className=" rounded-lg shadow-2xl overflow-hidden"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -307,20 +310,20 @@ function ContactForm() {
                 <div className="flex space-x-4">
                   <motion.div className="flex-1" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                     <label htmlFor="firstName" className="block text-sm font-medium text-gray-300 mb-1">First Name</label>
-                    <input type="text" id="firstName" name="firstName" className="w-full px-3 py-2 rounded-md border-2 border-gray-600 focus:border-[#3D37AF] focus:ring-2 focus:ring-[#3D37AF] bg-[#1F2937] text-gray-100 transition duration-200" />
+                    <input type="text" id="firstName" name="firstName" className="w-full px-3 py-2 rounded-md border-2 border-gray-600 focus:border-[#3D37AF] focus:ring-2 focus:ring-[#3D37AF]  text-gray-100 transition duration-200" />
                   </motion.div>
                   <motion.div className="flex-1" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                     <label htmlFor="lastName" className="block text-sm font-medium text-gray-300 mb-1">Last Name</label>
-                    <input type="text" id="lastName" name="lastName" className="w-full px-3 py-2 rounded-md border-2 border-gray-600 focus:border-[#3D37AF] focus:ring-2 focus:ring-[#3D37AF] bg-[#1F2937] text-gray-100 transition duration-200" />
+                    <input type="text" id="lastName" name="lastName" className="w-full px-3 py-2 rounded-md border-2 border-gray-600 focus:border-[#3D37AF] focus:ring-2 focus:ring-[#3D37AF]  text-gray-100 transition duration-200" />
                   </motion.div>
                 </div>
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">Email</label>
-                  <input type="email" id="email" name="email" className="w-full px-3 py-2 rounded-md border-2 border-gray-600 focus:border-[#3D37AF] focus:ring-2 focus:ring-[#3D37AF] bg-[#1F2937] text-gray-100 transition duration-200" />
+                  <input type="email" id="email" name="email" className="w-full px-3 py-2 rounded-md border-2 border-gray-600 focus:border-[#3D37AF] focus:ring-2 focus:ring-[#3D37AF]  text-gray-100 transition duration-200" />
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <label htmlFor="service" className="block text-sm font-medium text-gray-300 mb-1">Service Interested In</label>
-                  <select id="service" name="service" className="w-full px-3 py-2 rounded-md border-2 border-gray-600 focus:border-[#3D37AF] focus:ring-2 focus:ring-[#3D37AF] bg-[#1F2937] text-gray-100 transition duration-200">
+                  <select id="service" name="service" className="w-full px-3 py-2 rounded-md border-2 border-gray-600 focus:border-[#3D37AF] focus:ring-2 focus:ring-[#3D37AF]  text-gray-100 transition duration-200">
                     <option>Web Development</option>
                     <option>App Development</option>
                     <option>UI/UX Design</option>
@@ -331,7 +334,7 @@ function ContactForm() {
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">Project Details</label>
-                  <textarea id="message" name="message" rows="4" className="w-full px-3 py-2 rounded-md border-2 border-gray-600 focus:border-[#3D37AF] focus:ring-2 focus:ring-[#3D37AF] bg-[#1F2937] text-gray-100 transition duration-200"></textarea>
+                  <textarea id="message" name="message" rows="4" className="w-full px-3 py-2 rounded-md border-2 border-gray-600 focus:border-[#3D37AF] focus:ring-2 focus:ring-[#3D37AF]  text-gray-100 transition duration-200"></textarea>
                 </motion.div>
                 <motion.div 
                   whileHover={{ scale: 1.05 }} 
@@ -339,7 +342,7 @@ function ContactForm() {
                 >
                   <button 
                     type="submit" 
-                    className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gradient-to-r from-[#3D37AF] to-[#DE317F] hover:from-[#DE317F] hover:to-[#3D37AF] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3D37AF] transition-all duration-300"
+                    className="w-full flex justify-center py-3 px-4 border border-1 rounded-md shadow-sm text-sm font-medium text-darkGreenTextColor bg-green  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3D37AF] transition-all duration-300"
                   >
                     Start Your Project
                   </button>
@@ -347,14 +350,14 @@ function ContactForm() {
               </form>
             </motion.div>
             <motion.div 
-              className="w-full md:w-1/2 bg-gradient-to-br from-[#3D37AF] to-[#DE317F] p-8 flex items-center justify-center relative overflow-hidden"
+              className="w-full text-white md:w-1/2 bg-gradient-to-br from-[#3D37AF] to-[#DE317F] p-8 flex items-center justify-center relative overflow-hidden"
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
             >
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-[#3D37AF] via-[#DE317F] to-[#3D37AF]"
+                className="absolute inset-0  bg-gradient-to-r from-[#3D37AF] via-[#DE317F] to-[#3D37AF]"
                 animate={{
                   x: ["0%", "100%"],
                   transition: {
@@ -415,13 +418,13 @@ function MapSection() {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
-      className="bg-[#0A0F1A] py-12"
+      className=" py-12"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl lg:text-5xl font-extrabold text-center mb-12 text-gray-50">Find Us</h2>
+        <h2 className="text-4xl lg:text-5xl font-extrabold text-center mb-12 ">Find Us</h2>
         <div className="aspect-w-16 aspect-h-9">
           <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1422937950147!2d-73.98731968459391!3d40.74844097932681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1629814510200!5m2!1sen!2sus" 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1422937950147!2d-73.98731968459391!3d40.74844097932681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2supela%20bhilai%20Building!5e0!3m2!1sen!2sus!4v1629814510200!5m2!1sen!2sus" 
             width="100%" 
             height="450" 
             style={{border:0}} 
@@ -436,7 +439,7 @@ function MapSection() {
 
 function AddressSection() {
   return (
-    <section className="bg-[#111827] text-gray-50 py-16">
+    <section className=" text-gray-50 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}

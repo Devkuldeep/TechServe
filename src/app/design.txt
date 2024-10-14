@@ -77,3 +77,33 @@
           <path d="M12 5v14M19 12l-7 7-7-7" />
         </motion.svg>
       </motion.div>
+
+
+
+      background: hsla(238, 100%, 71%, 1);
+
+      background: radial-gradient(circle, hsla(238, 100%, 71%, 1) 0%, hsla(295, 100%, 84%, 1) 100%);
+      
+      background: -moz-radial-gradient(circle, hsla(238, 100%, 71%, 1) 0%, hsla(295, 100%, 84%, 1) 100%);
+      
+      background: -webkit-radial-gradient(circle, hsla(238, 100%, 71%, 1) 0%, hsla(295, 100%, 84%, 1) 100%);
+      
+      filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#696eff", endColorstr="#f8acff", GradientType=1 );
+
+
+/* 
+      #1C3434
+      #80F495
+      #FFFFFF
+      #F4F1EA
+      #4C554F
+      #041010
+      #031B1B
+      #717D7D
+      #ABCCC5
+      #F1F7F7
+      #00DF82
+      #2CC295
+      #04614C 
+      just implemint this hex color code for the webpage theme erase other colors from webpage also do not override or delete existed codes
+      */

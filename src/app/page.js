@@ -5,10 +5,10 @@ import { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
 import Cards from "@/components/utilities/Cards";
 import Image from 'next/image';
-
+import {LightGreenButton, WhiteButton, GreenWhiteButton} from "@/components/utilities/Buttons";
 export default function Home() {
   return (
-    <div>
+    <div className="bg-lightBeige">
       {/* //!EACH SECTION HAS A VIEW MORE OR KNOWMRE CURSER POINTER ON THE BOTTOM RIGHT OF THE SECTION */}
       <HeroSection />
       <ServiceSection />
@@ -34,7 +34,7 @@ function HeroSection() {
     offset: ["start end", "end start"]
   });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
   const y = useTransform(scrollYProgress, [0, 0.5], [50, 0]);
 
   return <motion.div
@@ -43,12 +43,13 @@ function HeroSection() {
     initial={{ y: 50, opacity: 0 }}
     animate={{ y: 0, opacity: 1 }}
     transition={{ duration: 0.8 }}
+    className="bg-[#F4F1EA]"
   >
     <section
-      className="relative" >
+      className="relative  ">
       <h2 className="sr-only">Hero Section</h2>
       <div
-        className="absolute inset-0 bg-gray-900/75 sm:bg-transparent sm:from-gray-900/95 sm:to-gray-900/25 ltr:sm:bg-gradient-to-r rtl:sm:bg-gradient-to-l"
+        className="absolute inset-0 sm:bg-transparent sm:from-[#F4F1EA]/95 sm:to-[#F4F1EA]/25 ltr:sm:bg-gradient-to-r rtl:sm:bg-gradient-to-l"
       ></div>
 
       <div
@@ -56,7 +57,7 @@ function HeroSection() {
       >
         <div className="max-w-xl text-center ltr:sm:text-left rtl:sm:text-right lg:w-1/2">
           <motion.h1
-            className="text-3xl overflow-hidden font-extrabold text-white sm:text-5xl"
+            className="text-3xl overflow-hidden font-extrabold text-darkGreenTextColor sm:text-5xl"
             initial="hidden"
             animate="visible"
             variants={{
@@ -107,7 +108,7 @@ function HeroSection() {
           </motion.h1>
 
           <motion.p
-            className="mt-4 max-w-lg text-white sm:text-xl/relaxed"
+            className="mt-4 max-w-lg text-darkGreenTextColor sm:text-xl/relaxed"
             initial={{ opacity: 0, scale: 0.5, y: 100 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeInOut", delay: 0.2 }}
@@ -130,31 +131,10 @@ function HeroSection() {
           </motion.p>
 
           <div className="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
-            <motion.div
-              className="w-full sm:w-auto"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Link
-                href="/about"
-                className="block w-full rounded bg-rose-600 px-8 sm:px-12 py-3 text-sm font-medium text-white shadow hover:bg-rose-700 focus:outline-none focus:ring active:bg-rose-500"
-              >
-                About
-              </Link>
-            </motion.div>
+      
+          <LightGreenButton title="About" link="/about" />
 
-            <motion.div
-              className="w-full sm:w-auto"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <Link
-                href="/services"
-                className="block w-full rounded bg-white px-8 sm:px-12 py-3 text-sm font-medium text-rose-600 shadow hover:text-rose-700 focus:outline-none focus:ring active:text-rose-500"
-              >
-                Our Services
-              </Link>
-            </motion.div>
+            <WhiteButton title="Our Services" link="/services" />
           </div>
         </div>
         <div className="hidden lg:block lg:w-1/2">
@@ -186,7 +166,7 @@ function ServiceSection() {
     offset: ["start end", "end start"]
   });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
   const y = useTransform(scrollYProgress, [0, 0.5], [50, 10]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [.7, 1]);
 
@@ -197,32 +177,33 @@ function ServiceSection() {
     animate={{ y: 0, opacity: 1 }}
     transition={{ duration: 0.8, delay: 0.2 }}
   >
-    <h2 className="text-4xl lg:text-6xl font-bold text-left text-white">Service Section</h2>
-    <section className="bg-gray-900 rounded-xl mx-auto">
+    <h2 className="text-4xl lg:text-6xl font-bold text-left text-darkGreenTextColor my-4 py-4 px-6">Service Section</h2>
+    <section className=" rounded-xl mx-auto">
 
       <div className="max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16 mx-auto">
         <div className="grid grid-cols-1 gap-y-8 lg:grid-cols-2 lg:items-center lg:gap-x-16">
           <div className="mx-auto max-w-lg text-center lg:mx-0 ltr:lg:text-left rtl:lg:text-right">
-            <h3 className="text-2xl font-bold sm:text-4xl">Our Tech Solutions</h3>
+            <h3 className="text-2xl font-bold sm:text-4xl text-darkGreenTextColor">Our Tech Solutions</h3>
 
-            <p className="mt-4 text-gray-600">
+            <p className="mt-4 text-darkGreenTextColor">
               At Techserve, we offer a wide range of innovative tech solutions designed to meet your unique business needs. Our client-centric approach ensures that each solution is tailored to optimize your digital presence and drive growth.
             </p>
 
-            <a
+            <LightGreenButton title="Explore Our Services" link="/services"  className="mt-8 inline-block roundedpx-12 py-3"/>
+            {/* <a
               href="#"
-              className="mt-8 inline-block rounded bg-indigo-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-yellow-400"
+              className=" bg-green2  text-sm font-medium text-darkGreenTextColor transition hover:bg-[#00DF82] focus:outline-none focus:ring focus:ring-[#2CC295]"
             >
               Explore Our Services
-            </a>
+            </a> */}
           </div>
 
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
             <a
-              className="block  rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
+              className="block rounded-xl border border-darkGreenTextColor p-4 shadow-sm hover:border-darkGreenTextColor hover:ring-1 hover:ring-darkGreenTextColor focus:outline-none focus:ring"
               href="#"
             >
-              <span className="inline-block rounded-lg bg-[#4F46E5] p-3">
+              <span className="inline-block rounded-lg bg-green2 p-3">
                 <svg
                   className="size-6"
                   fill="none"
@@ -234,18 +215,18 @@ function ServiceSection() {
                 </svg>
               </span>
 
-              <h2 className="mt-2 font-bold">Web Development</h2>
+              <h2 className="mt-2 font-bold text-darkGreenTextColor">Web Development</h2>
 
-              <p className="hidden sm:mt-1 sm:block sm:text-sm sm:text-gray-600">
+              <p className="hidden sm:mt-1 sm:block sm:text-sm sm:text-darkGreenTextColor">
                 Custom websites tailored to your business needs.
               </p>
             </a>
 
             <a
-              className="block rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
+              className="block rounded-xl border border-darkGreenTextColor p-4 shadow-sm hover:border-darkGreenTextColor hover:ring-1 hover:ring-darkGreenTextColor focus:outline-none focus:ring"
               href="#"
             >
-              <span className="inline-block rounded-lg bg-[#4F46E5] p-3">
+              <span className="inline-block rounded-lg bg-green2 p-3">
                 <svg
                   className="size-6"
                   fill="none"
@@ -257,18 +238,18 @@ function ServiceSection() {
                 </svg>
               </span>
 
-              <h2 className="mt-2 font-bold">App Development</h2>
+              <h2 className="mt-2 font-bold text-darkGreenTextColor">App Development</h2>
 
-              <p className="hidden sm:mt-1 sm:block sm:text-sm sm:text-gray-600">
+              <p className="hidden sm:mt-1 sm:block sm:text-sm sm:text-darkGreenTextColor">
                 Innovative mobile apps for iOS and Android.
               </p>
             </a>
 
             <a
-              className="block rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
+              className="block rounded-xl border border-darkGreenTextColor p-4 shadow-sm hover:border-darkGreenTextColor hover:ring-1 hover:ring-darkGreenTextColor focus:outline-none focus:ring"
               href="#"
             >
-              <span className="inline-block rounded-lg bg-[#4F46E5] p-3">
+              <span className="inline-block rounded-lg bg-green2 p-3">
                 <svg
                   className="size-6"
                   fill="none"
@@ -280,18 +261,18 @@ function ServiceSection() {
                 </svg>
               </span>
 
-              <h2 className="mt-2 font-bold">UI/UX Design</h2>
+              <h2 className="mt-2 font-bold text-darkGreenTextColor">UI/UX Design</h2>
 
-              <p className="hidden sm:mt-1 sm:block sm:text-sm sm:text-gray-600">
+              <p className="hidden sm:mt-1 sm:block sm:text-sm sm:text-darkGreenTextColor">
                 User-centric designs for optimal experiences.
               </p>
             </a>
 
             <a
-              className="block rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
+              className="block rounded-xl border border-darkGreenTextColor p-4 shadow-sm hover:border-darkGreenTextColor hover:ring-1 hover:ring-darkGreenTextColor focus:outline-none focus:ring"
               href="#"
             >
-              <span className="inline-block rounded-lg bg-[#4F46E5] p-3">
+              <span className="inline-block rounded-lg bg-green2 p-3">
                 <svg
                   className="size-6"
                   fill="none"
@@ -303,18 +284,18 @@ function ServiceSection() {
                 </svg>
               </span>
 
-              <h2 className="mt-2 font-bold">Video Production</h2>
+              <h2 className="mt-2 font-bold text-darkGreenTextColor">Video Production</h2>
 
-              <p className="hidden sm:mt-1 sm:block sm:text-sm sm:text-gray-600">
+              <p className="hidden sm:mt-1 sm:block sm:text-sm sm:text-darkGreenTextColor">
                 Professional video shooting and editing.
               </p>
             </a>
 
             <a
-              className="block rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
+              className="block rounded-xl border border-darkGreenTextColor p-4 shadow-sm hover:border-darkGreenTextColor hover:ring-1 hover:ring-darkGreenTextColor focus:outline-none focus:ring"
               href="#"
             >
-              <span className="inline-block rounded-lg bg-[#4F46E5] p-3">
+              <span className="inline-block rounded-lg bg-green2 p-3">
                 <svg
                   className="size-6"
                   fill="none"
@@ -337,7 +318,7 @@ function ServiceSection() {
               className="block rounded-xl border border-gray-100 p-4 shadow-sm hover:border-gray-200 hover:ring-1 hover:ring-gray-200 focus:outline-none focus:ring"
               href="#"
             >
-              <span className="inline-block rounded-lg bg-[#4F46E5] p-3">
+              <span className="inline-block rounded-lg bg-green2 p-3">
                 <svg
                   className="size-6"
                   fill="none"
@@ -369,7 +350,7 @@ function ProjectSection() {
     offset: ["start end", "end start"]
   });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
   const x = useTransform(scrollYProgress, [0, 0.5], [-50, 0]);
 
   const projects = [
@@ -410,7 +391,7 @@ function ProjectSection() {
       transition={{ duration: 0.8 }}
       className="relative"
     >
-      <h2 className="text-4xl lg:text-6xl font-bold text-left text-white my-4 py-4 px-6">Project Section</h2>
+      <h2 className="text-4xl lg:text-6xl font-bold text-left text-[#1C3434] my-4 py-4 px-6">Project Section</h2>
       
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -444,14 +425,14 @@ function AboutSection() {
     offset: ["start end", "end start"]
   });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [0.8, 1]);
 
   return <motion.div
     ref={ref}
     style={{ opacity, scale }}
   >
-    <h2 className="text-4xl lg:text-6xl font-bold text-left text-white my-4 py-4 px-6">About Section</h2>
+    <h2 className="text-4xl lg:text-6xl font-bold text-left text-[#1C3434] my-4 py-4 px-6">About Section</h2>
     <section>
       <h2 className="sr-only">About Section</h2>
       <div className="max-w-screen-xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
@@ -461,18 +442,11 @@ function AboutSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl font-bold sm:text-4xl text-white"> Techserve</h2>
-            <p className="mt-4 text-gray-300">
+            <h2 className="text-3xl font-bold sm:text-4xl text-[#1C3434]"> Techserve</h2>
+            <p className="mt-4 text-[#1C3434]">
               At Techserve, we&apos;re passionate about leveraging technology to drive business growth. With years of experience and a team of skilled professionals, we deliver innovative solutions tailored to your unique needs.
             </p>
-            <motion.a
-              href="/about"
-              className="inline-block px-12 py-3 mt-8 text-sm font-medium text-white bg-rose-600 border border-rose-600 rounded active:text-rose-500 hover:bg-transparent hover:text-white focus:outline-none focus:ring"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Learn More
-            </motion.a>
+            <GreenWhiteButton title="Learn More" link="/about" className="text-white"/>
           </motion.div>
 
           <motion.div
@@ -502,7 +476,7 @@ function TestimonialSection() {
     offset: ["start end", "end start"]
   });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
   const y = useTransform(scrollYProgress, [0, 0.5], [50, 0]);
 
   const testimonials = [
@@ -549,8 +523,8 @@ function TestimonialSection() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
     >
-      <h2 className="text-4xl lg:text-6xl font-bold text-left text-white my-4 py-4 px-6">Testimonial</h2>
-      <section className="bg-gradient-to-b from-gray-900 to-gray-800 text-white py-16 w-full" >
+      <h2 className="text-4xl lg:text-6xl font-bold text-left text-[#1C3434] my-4 py-4 px-6">Testimonial</h2>
+      <section className="  text-[#1C3434] py-16 w-full" >
         <h2 className="sr-only">Testimonial Section</h2>
         <div className="max-w-screen-xl px-4 mx-auto text-center lg:px-6">
           <motion.div
@@ -559,10 +533,10 @@ function TestimonialSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h2 className="mb-4 text-4xl font-extrabold tracking-tight">
+            <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-[#1C3434]">
               What Our Clients Say
             </h2>
-            <p className="mb-8 font-light text-gray-300 lg:mb-16 sm:text-xl">
+            <p className="mb-8 font-light text-[#1C3434] lg:mb-16 sm:text-xl">
               Discover how Techserve has transformed businesses through innovative solutions.
             </p>
           </motion.div>
@@ -574,10 +548,10 @@ function TestimonialSection() {
                 transition: "transform 0.05s linear",
               }}
             >
-              {[...testimonials, ...testimonials, ...testimonials].map((testimonial, index) => (
+                {[...testimonials, ...testimonials, ...testimonials].map((testimonial, index) => (
                 <motion.div
                   key={index}
-                  className="p-6 bg-gray-800 rounded-lg shadow-xl flex-shrink-0 w-full md:w-1/2 lg:w-1/3"
+                  className="p-6 bg-[#F4F1EA] rounded-lg shadow-xl flex-shrink-0 w-full md:w-1/2 lg:w-1/3"
                   style={{ marginRight: "2rem" }}
                 >
                   <img
@@ -587,9 +561,9 @@ function TestimonialSection() {
                     width={80}
                     height={80}
                   />
-                  <h3 className="text-lg font-semibold">{testimonial.name}</h3>
-                  <p className="text-sm text-gray-400 mb-4">{testimonial.role}</p>
-                  <p className="text-gray-300">{testimonial.content}</p>
+                  <h3 className="text-lg text-[#1C3434] font-semibold">{testimonial.name}</h3>
+                  <p className="text-sm text-[#1C3434] mb-4">{testimonial.role}</p>
+                  <p className="text-[#1C3434]">{testimonial.content}</p>
                   <div className="flex justify-center mt-4">
                     {[...Array(5)].map((_, i) => (
                       <svg
@@ -619,15 +593,15 @@ function FeatureSection() {
     offset: ["start end", "end start"]
   });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
   const y = useTransform(scrollYProgress, [0, 0.5], [50, 0]);
 
   return <motion.div
     ref={ref}
     style={{ opacity, y }}
   >
-    <h2 className="text-4xl lg:text-6xl font-bold text-left text-white my-4 py-4 px-6">Feature Section</h2>
-    <section className="bg-gray-900 text-white">
+    <h2 className="text-4xl lg:text-6xl font-bold text-left text-[#1C3434] my-4 py-4 px-6">Feature Section</h2>
+    <section className="text-[#1C3434]">
       <h2 className="sr-only">Feature Section</h2>
       <div className="max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16 mx-auto">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
@@ -647,7 +621,7 @@ function FeatureSection() {
 
           <div className="lg:py-24">
             <motion.h2
-              className="text-3xl font-bold sm:text-4xl text-white"
+              className="text-3xl font-bold sm:text-4xl text-[#1C3434]"
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -656,7 +630,7 @@ function FeatureSection() {
             </motion.h2>
 
             <motion.p
-              className="mt-4 text-gray-300"
+              className="mt-4 text-[#1C3434]"
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -664,17 +638,7 @@ function FeatureSection() {
               Our cutting-edge technology and expert team deliver tailored solutions to drive your business forward. From web development to digital marketing, we&apos;ve got you covered.
             </motion.p>
 
-            <motion.a
-              href="#"
-              className="mt-8 inline-block rounded bg-indigo-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-yellow-400"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Learn More
-            </motion.a>
+            <LightGreenButton title="Learn More" link="/about" className="mt-8 inline-block" />
           </div>
         </div>
       </div>
@@ -689,15 +653,15 @@ function FAQSection() {
     offset: ["start end", "end start"]
   });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
   const y = useTransform(scrollYProgress, [0, 0.5], [50, 0]);
 
   return <motion.div
     ref={ref}
     style={{ opacity, y }}
   >
-    <h2 className="text-4xl lg:text-6xl font-bold text-left text-white my-4 py-4 px-6">FAQ Section</h2>
-    <section className="bg-[#0A0A0A] text-white user-select-none">
+    <h2 className="text-4xl lg:text-6xl font-bold text-left text-[#1C3434] my-4 py-4 px-6">FAQ Section</h2>
+    <section className=" text-[#1C3434] user-select-none">
       <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
         <motion.h2
           className="text-3xl font-bold sm:text-4xl"
@@ -737,7 +701,7 @@ function FAQSection() {
                 <summary className="flex items-center justify-between py-4">
                   <motion.h3
                     className="font-medium"
-                    whileHover={{ scale: 1.05, color: "#4FD1C5" }}
+                    whileHover={{ scale: 1.05, color: "#1C3434" }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
                     {faq.question}
@@ -755,7 +719,7 @@ function FAQSection() {
                   </motion.svg>
                 </summary>
                 <motion.p
-                  className="mt-4 leading-relaxed text-gray-300"
+                  className="mt-4 leading-relaxed text-[#1C3434]"
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
@@ -782,15 +746,15 @@ function CallToActionSection() {
     offset: ["start end", "end start"]
   });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
   const scale = useTransform(scrollYProgress, [0, 0.5], [0.9, 1]);
 
   return <motion.div
     ref={ref}
     style={{ opacity, scale }}
   >
-    <h2 className="text-4xl lg:text-6xl font-bold text-left text-white my-4 py-4 px-6">Call to Action </h2>
-    <section className="bg-[#12141A] text-white">
+    <h2 className="text-4xl lg:text-6xl font-bold text-left text-[#1C3434] my-4 py-4 px-6">Call to Action </h2>
+    <section className=" text-[#1C3434]">
       <h2 className="sr-only">Call to Action Section</h2>
       <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 items-center">
@@ -806,7 +770,9 @@ function CallToActionSection() {
             <p className="mt-4 text-xl">
               Partner with Techserve to unlock innovative tech solutions tailored to your business needs. From web development to digital marketing, we&apos;re here to help you optimize your online presence and drive growth.
             </p>
-            <motion.div
+
+            <GreenWhiteButton title="Let&apos;s Talk" link="/contacts" className="mt-8 text-white " />
+            {/* <motion.div
               className="mt-8"
               
             >
@@ -820,7 +786,7 @@ function CallToActionSection() {
               >
                 Let&apos;s Talk
               </Link>
-            </motion.div>
+            </motion.div> */}
           </motion.div>
 
           <motion.div
