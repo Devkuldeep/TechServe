@@ -130,11 +130,11 @@ function HeroSection() {
             ))}
           </motion.p>
 
-          <div className="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
+          <div className="mt-8 flex flex-col lg:flex-row gap-4 lg:gap-8  justify-center items-center">
       
-          <LightGreenButton title="About" link="/about" />
+          <LightGreenButton title="About" link="/about"  className="" />
 
-            <WhiteButton title="Our Services" link="/services" />
+            <WhiteButton title="Our Services" link="/services"  className="" />
           </div>
         </div>
         <div className="hidden lg:block lg:w-1/2">
@@ -189,13 +189,8 @@ function ServiceSection() {
               At Techserve, we offer a wide range of innovative tech solutions designed to meet your unique business needs. Our client-centric approach ensures that each solution is tailored to optimize your digital presence and drive growth.
             </p>
 
-            <LightGreenButton title="Explore Our Services" link="/services"  className="mt-8 inline-block roundedpx-12 py-3"/>
-            {/* <a
-              href="#"
-              className=" bg-green2  text-sm font-medium text-darkGreenTextColor transition hover:bg-[#00DF82] focus:outline-none focus:ring focus:ring-[#2CC295]"
-            >
-              Explore Our Services
-            </a> */}
+            <LightGreenButton title="Explore Our Services" link="/services"  className="mt-8 inline-block rounded px-12 py-3"/>
+           
           </div>
 
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
@@ -435,8 +430,8 @@ function AboutSection() {
     <h2 className="text-4xl lg:text-6xl font-bold text-left text-[#1C3434] my-4 py-4 px-6">About Section</h2>
     <section>
       <h2 className="sr-only">About Section</h2>
-      <div className="max-w-screen-xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+      <div className="max-w-screen-xl mx-auto px-4 py-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -446,7 +441,7 @@ function AboutSection() {
             <p className="mt-4 text-[#1C3434]">
               At Techserve, we&apos;re passionate about leveraging technology to drive business growth. With years of experience and a team of skilled professionals, we deliver innovative solutions tailored to your unique needs.
             </p>
-            <GreenWhiteButton title="Learn More" link="/about" className="text-white px-4"/>
+            <GreenWhiteButton title="Know More" link="/about" className=" px-4 mt-8"/>
           </motion.div>
 
           <motion.div
@@ -524,7 +519,7 @@ function TestimonialSection() {
       transition={{ duration: 0.8 }}
     >
       <h2 className="text-4xl lg:text-6xl font-bold text-left text-[#1C3434] my-4 py-4 px-6">Testimonial</h2>
-      <section className="  text-[#1C3434] py-16 w-full" >
+      <section className="  text-[#1C3434] py-4 sm:py-12 w-full" >
         <h2 className="sr-only">Testimonial Section</h2>
         <div className="max-w-screen-xl px-4 mx-auto text-center lg:px-6">
           <motion.div
@@ -600,13 +595,13 @@ function FeatureSection() {
     ref={ref}
     style={{ opacity, y }}
   >
-    <h2 className="text-4xl lg:text-6xl font-bold text-left text-[#1C3434] my-4 py-4 px-6">Feature Section</h2>
+    <h2 className="text-4xl lg:text-6xl font-bold text-left text-[#1C3434] px-6">Feature Section</h2>
     <section className="text-[#1C3434]">
       <h2 className="sr-only">Feature Section</h2>
-      <div className="max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16 mx-auto">
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
+      <div className="max-w-screen-xl px-4 sm:px-6  lg:px-8  mx-auto">
+        <div className="grid grid-cols-1 gap-2 lg:grid-cols-2 lg:gap-16 items-center">
           <motion.div
-            className="relative h-64 overflow-hidden rounded-lg sm:h-80 lg:h-full"
+            className="relative h-64 overflow-hidden rounded-lg sm:h-80 lg:h-full flex justify-center items-center"
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -619,7 +614,7 @@ function FeatureSection() {
             />
           </motion.div>
 
-          <div className="lg:py-24">
+          <div className="lg:py-16">
             <motion.h2
               className="text-3xl font-bold sm:text-4xl text-[#1C3434]"
               initial={{ opacity: 0, y: 50 }}
@@ -660,9 +655,9 @@ function FAQSection() {
     ref={ref}
     style={{ opacity, y }}
   >
-    <h2 className="text-4xl lg:text-6xl font-bold text-left text-[#1C3434] my-4 py-4 px-6">FAQ Section</h2>
+    <h2 className="text-4xl lg:text-6xl font-bold text-left text-[#1C3434] my-4 px-6">FAQ Section</h2>
     <section className=" text-[#1C3434] user-select-none">
-      <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
         <motion.h2
           className="text-3xl font-bold sm:text-4xl"
           initial={{ opacity: 0, y: -20 }}
@@ -756,7 +751,7 @@ function CallToActionSection() {
     <h2 className="text-4xl lg:text-6xl font-bold text-left text-[#1C3434] my-4 py-4 px-6">Call to Action </h2>
     <section className=" text-[#1C3434]">
       <h2 className="sr-only">Call to Action Section</h2>
-      <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-screen-xl px-4 py-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 items-center">
           <motion.div
             className="order-2 lg:order-1"
@@ -764,14 +759,14 @@ function CallToActionSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h3 className="text-3xl font-extrabold sm:text-4xl">
+            <h3 className="text-2xl font-extrabold sm:text-4xl">
               Ready to Transform Your Digital Presence?
             </h3>
-            <p className="mt-4 text-xl">
+            <p className="mt-4 sm:mt-8 text-sm">
               Partner with Techserve to unlock innovative tech solutions tailored to your business needs. From web development to digital marketing, we&apos;re here to help you optimize your online presence and drive growth.
             </p>
 
-            <GreenWhiteButton title="Let&apos;s Talk" link="/contacts" className="mt-8 text-white " />
+            <GreenWhiteButton title="Let&apos;s Talk" link="/contacts" className="mt-8 " />
             {/* <motion.div
               className="mt-8"
               

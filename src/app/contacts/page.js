@@ -6,7 +6,7 @@ import Link from 'next/link';
 import {LightGreenButton, WhiteButton, GreenWhiteButton} from "@/components/utilities/Buttons";
 export default function Contacts() {
   return (
-    <div className=" min-h-screen pt-16">
+    <div className=" min-h-[calc(100vh-100px)] pt-16 sm:pt-8">
       <HeaderSection />   
       {/* <BackgroundElements />    */}
       <ContactForm />
@@ -28,7 +28,7 @@ function HeaderSection() {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className=" text-darkGreen py-24  relative overflow-hidden"
+      className=" text-darkGreen py-12 md:py-24  relative overflow-hidden"
     >
       <BackgroundElements />
       <ContentSection />
@@ -126,12 +126,12 @@ function CallToAction() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.8 }}
-      className="flex justify-center"
+      className="flex justify-center items-center"
     >
       <LightGreenButton
         title="Scroll Down"
         link="/contacts"
-        className="text-darkGreen font-bold text-lg px-8 py-3"
+        className="text-darkGreen text-center font-bold text-lg px-8 py-3"
       />
     </motion.div>
   );
@@ -143,7 +143,7 @@ function ScrollIndicator() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 1.5 }}
-      className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
+      className="flex justify-center items-center my-12"
     >
       <motion.svg
         xmlns="http://www.w3.org/2000/svg"
@@ -295,16 +295,16 @@ function ContactInfoSection() {
 
 function ContactForm() {
   return (
-    <section id='contact-form' className=" py-12 relative overflow-hidden">
+    <section id='contact-form' className="  relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
-          className="text-center mb-12"
+          className="text-center mb-2 md:mb-12"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-5xl  font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-darkGreenTextColor to-green">
+          <h2 className="text-3xl  md:text-5xl  font-extrabold mb-4 bg-clip-text  bg-darkGreenTextColor">
             Let&apos;s Create Something Amazing
           </h2>
           <p className="text-xl text-gray-300">We&apos;re excited to hear about your project. Reach out and let&apos;s innovate together!</p>

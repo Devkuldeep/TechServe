@@ -40,7 +40,7 @@ function BannerSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="text-4xl font-bold tracking-tight text-darkGreenTextColor sm:text-5xl md:text-6xl"
+                className="text-4xl font-bold tracking-tight text-darkGreenTextColor sm:text-5xl "
               >
                 <span className="block xl:inline">
                   Empowering businesses with
@@ -54,7 +54,7 @@ function BannerSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
                 viewport={{ once: true }}
-                className="mt-3 text-base text-lightGreenTextColor sm:mx-auto sm:mt-5 sm:max-w-xl sm:text-lg md:mt-5 md:text-xl lg:mx-0"
+                className="mt-3 text-base text-lightGreenTextColor sm:mx-auto sm:mt-5 sm:max-w-xl sm:text-lg md:mt-5 md:text-lg lg:mx-0"
               >
                 Techserve offers a wide range of innovative tech solutions, from
                 web development to digital marketing, designed to optimize your
@@ -65,13 +65,13 @@ function BannerSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.6 }}
                 viewport={{ once: true }}
-                className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start"
+                className="mt-5 sm:mt-8 sm:flex sm:justify-center  items-center "
               >
               
                 <LightGreenButton
                   title="Contact us"
                   link="/contacts"
-                  className="text-lightBeige  mt-4"
+                  className="text-lightBeige  mt-4 text-center"
                 />
               
               </motion.div>
@@ -727,7 +727,7 @@ function CallToActionSection() {
             Let&apos;s discuss how our innovative tech solutions can empower
             your business and drive growth.
           </motion.p>
-          <GreenWhiteButton title="Get Started" link="/contacts" className="text-white px-4 py-2 font-bold"/>
+          <GreenWhiteButton title="Get Started" link="/contacts" className="px-4 py-2 font-bold mt-6 md:w-auto"/>
        
         </div>
       </motion.div>
