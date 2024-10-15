@@ -46,7 +46,7 @@ function HeroSection() {
     className=""
   >
     <section
-      className="relative  ">
+      className="relative   flex items-center justify-center ">
       <h2 className="sr-only">Hero Section</h2>
       <div
         className="absolute inset-0"
@@ -137,7 +137,7 @@ function HeroSection() {
             <WhiteButton title="Our Services" link="/services"  className="" />
           </div>
         </div>
-        <div className="hidden lg:block lg:w-1/2">
+        <div className="mt-8 block lg:w-1/2 ">
           <motion.div
             initial={{ opacity: 0, x: 100 }}
             animate={{ opacity: 1, x: 0 }}
