@@ -51,7 +51,7 @@ function HeaderSection() {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 50 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-7xl font-bold mb-8 text-center text-darkGreenTextColor"
+          className="text-7xl font-bold mb-8 text-center text-darkGreen3"
         >
           {["Our", "  ", "Projects"].map((word, wordIndex) => (
             <span key={wordIndex} className="inline-block">
@@ -61,7 +61,7 @@ function HeaderSection() {
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.1 * (wordIndex * word.length + charIndex) }}
-                  className={wordIndex === 2 ? "text-transparent bg-clip-text bg-gradient-to-r from-[#FF4D6D] to-[#4361EE]" : ""}
+                  className={wordIndex === 2 ? "text-transparent bg-clip-text bg-gradient-to-r from-green to-darkGreen3" : ""}
                 >
                   {char}
                 </motion.span>

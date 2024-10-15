@@ -22,124 +22,142 @@ function HeaderSection() {
   const opacity = useTransform(scrollYProgress, [0, 0.2], [0, 1]);
   const y = useTransform(scrollYProgress, [0, 0.2], [-50, 0]);
 
-  const text = "Let's Connect and Innovate";
-
   return (
     <motion.div 
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="text-gray-50 py-24 min-h-screen relative" 
+      className="bg-white text-darkGreen py-24 min-h-screen relative overflow-hidden"
     >
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-        <div className="absolute top-10 left-10 w-20 h-20 rounded-full opacity-20 animate-pulse"></div>
-        <div className="absolute bottom-20 right-20 w-32 h-32  rounded-full opacity-20 animate-pulse"></div>
-      </div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.h1 
-          className="text-4xl lg:text-6xl font-extrabold mb-8 text-center bg-clip-text"
-        >
-          {text.split('').map((char, index) => (
-            <motion.span
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
-              className={char === 'C' || char === 'I' ? 'text-[#FF4D6D]' : ''}
-            >
-              {char}
-            </motion.span>
-          ))}
-        </motion.h1>
-        <motion.div 
+      <BackgroundElements />
+      <ContentSection />
+      <ScrollIndicator />
+    </motion.div>
+  );
+}
+
+function BackgroundElements() {
+  return (
+    <div className="absolute inset-0 z-0">
+      <motion.div
+        className="absolute top-10 left-10 w-20 h-20 rounded-full bg-green opacity-20"
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.2, 0.3, 0.2],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+      <motion.div
+        className="absolute bottom-20 right-20 w-32 h-32 rounded-full bg-green2 opacity-20"
+        animate={{
+          scale: [1, 1.3, 1],
+          opacity: [0.2, 0.4, 0.2],
+        }}
+        transition={{
+          duration: 5,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+    </div>
+  );
+}
+
+function ContentSection() {
+  const text = "Let's Connect and Innovate";
+
+  return (
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <AnimatedTitle text={text} />
+      <AnimatedDescription />
+      <CallToAction />
+    </div>
+  );
+}
+
+function AnimatedTitle({ text }) {
+  return (
+    <motion.h1 className="text-5xl lg:text-7xl font-extrabold mb-8 text-center">
+      {text.split('').map((char, index) => (
+        <motion.span
+          key={index}
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-lg lg:text-2xl max-w-4xl mx-auto leading-relaxed text-center"
+          transition={{ duration: 0.5, delay: index * 0.05 }}
+          className={char === 'C' || char === 'I' ? 'text-green' : ''}
         >
-          <p className="mb-4">
-            {[...("Empower your business with Techserve's cutting-edge digital solutions.")].map((char, index) => (
-              <motion.span
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.01 + 1 }}
-              >
-                {char}
-              </motion.span>
-            ))}
-          </p>
-          <p>
-            {[...("Together, we'll transform your online presence and drive unprecedented growth.")].map((char, index) => (
-              <motion.span
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.01 + 2 }}
-              >
-                {char}
-              </motion.span>
-            ))}
-          </p>
-        </motion.div>
-     
-      </div>
-     
+          {char}
+        </motion.span>
+      ))}
+    </motion.h1>
+  );
+}
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 1.5 }}
-        className="absolute bottom-0 w-full flex justify-center flex-col items-center"
+function AnimatedDescription() {
+  const descriptions = [
+    "Empower your business with Techserve's cutting-edge digital solutions.",
+    "Together, we'll transform your online presence and drive unprecedented growth."
+  ];
+
+  return (
+    <motion.div 
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.4 }}
+      className="text-xl lg:text-2xl max-w-4xl mx-auto leading-relaxed text-center mb-12"
+    >
+      {descriptions.map((description, index) => (
+        <p key={index} className={index === 0 ? "mb-4" : ""}>
+          {description}
+        </p>
+      ))}
+    </motion.div>
+  );
+}
+
+function CallToAction() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.8 }}
+      className="flex justify-center"
+    >
+      <LightGreenButton
+        title="Scroll Down"
+        link="/contacts"
+        className="text-darkGreen font-bold text-lg px-8 py-3"
+      />
+    </motion.div>
+  );
+}
+
+function ScrollIndicator() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 1.5 }}
+      className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
+    >
+      <motion.svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="40"
+        height="40"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="text-green animate-bounce"
       >
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 1.7 }}
-          className="text-white mb-4 overflow-hidden flex justify-between"
-          style={{
-            width: '100%',
-          }}
-        >
-          <motion.div
-            animate={{
-              x: [0, -100],
-            }}
-            transition={{
-              x: {
-                repeat: Infinity,
-                repeatType: "loop",
-                duration: 5,
-                ease: "linear",
-              },
-            }}
-            style={{
-              width: '100%',
-              display: 'flex',
-              justifyContent: 'space-between',
-            }}
-          >
-            <span className='text-darkGreenTextColor  inline-block font-bold text-4xl md:text-6xl lg:text-6xl' style={{ whiteSpace: 'nowrap', marginRight: '100px' }}>Feel Free To Contact Us</span>
-
-            <span className='text-darkGreenTextColor  inline-block font-bold text-4xl md:text-6xl lg:text-6xl' style={{ whiteSpace: 'nowrap', marginRight: '100px' }}>Feel Free To Contact Us</span>
-
-          </motion.div>
-        </motion.div>
-        <motion.svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="40"
-          height="40"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="text-darkGreenTextColor animate-bounce"
-        >
-          <path d="M12 5v14M19 12l-7 7-7-7" />
-        </motion.svg>
-      </motion.div>
+        <path d="M12 5v14M19 12l-7 7-7-7" />
+      </motion.svg>
     </motion.div>
   );
 }
@@ -166,8 +184,8 @@ function ContactInfoSection() {
     <section 
       className="py-12 lg:py-20 relative overflow-hidden"
       onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+    
+      
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.h2 
@@ -219,7 +237,7 @@ function ContactInfoSection() {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-white">{item.title}</h3>
-                  <p className="text-gray-300">{item.content}</p>
+                  <p className="text-white">{item.content}</p>
                 </div>
               </motion.div>
             ))}
@@ -245,7 +263,7 @@ function ContactInfoSection() {
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors duration-300"
+                className="text-gray-400 transition-colors duration-300"
                 whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -285,7 +303,7 @@ function ContactForm() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-5xl lg:text-7xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#3D37AF] to-[#DE317F]">
+          <h2 className="text-5xl  font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-darkGreenTextColor to-green">
             Let&apos;s Create Something Amazing
           </h2>
           <p className="text-xl text-gray-300">We&apos;re excited to hear about your project. Reach out and let&apos;s innovate together!</p>
@@ -350,14 +368,14 @@ function ContactForm() {
               </form>
             </motion.div>
             <motion.div 
-              className="w-full text-white md:w-1/2 bg-gradient-to-br from-[#3D37AF] to-[#DE317F] p-8 flex items-center justify-center relative overflow-hidden"
+              className="w-full text-white md:w-1/2 bg-gradient-to-br from-darkGreenTextColor to-green p-8 flex items-center justify-center relative overflow-hidden"
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
             >
               <motion.div
-                className="absolute inset-0  bg-gradient-to-r from-[#3D37AF] via-[#DE317F] to-[#3D37AF]"
+                className="absolute inset-0  bg-gradient-to-r from-darkGreenTextColor via-green to-darkGreenTextColor"
                 animate={{
                   x: ["0%", "100%"],
                   transition: {
@@ -448,7 +466,7 @@ function AddressSection() {
           viewport={{ once: true }}
           className="text-4xl lg:text-5xl font-extrabold text-center mb-12"
         >
-          Our <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#3D37AF] to-[#DE317F]">Innovation </span>Hub
+          Our <span className="bg-clip-text text-transparent bg-gradient-to-r from-darkGreenTextColor to-green">Innovation </span>Hub
         </motion.h2>
         <motion.div 
           className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center"
@@ -464,7 +482,7 @@ function AddressSection() {
               whileInView={{ scale: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-[#DE317F]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-darkGreenTextColor" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
@@ -481,7 +499,7 @@ function AddressSection() {
               whileInView={{ scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-[#DE317F]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-darkGreenTextColor" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
               </svg>
             </motion.div>
@@ -497,7 +515,7 @@ function AddressSection() {
               whileInView={{ scale: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-[#DE317F]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-darkGreenTextColor" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </motion.div>

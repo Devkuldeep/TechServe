@@ -24,15 +24,15 @@ export default function Services() {
 
 function BannerSection() {
   return (
-    <div className="relative overflow-hidden">
-      <div className="mx-auto max-w-7xl">
-        <div className="relative z-10 pb-8 sm:pb-16 md:pb-20 lg:w-full lg:max-w-2xl lg:pb-28 xl:pb-32">
+    <div className="relative overflow-hidden mx-auto  py-2 px-2  max-w-7xl">
+      <div className="lg:w-1/2  ">
+        <div className="relative px-4  z-10 pb-8   lg:w-full lg:max-w-2xl  xl:pb-32">
           <motion.main
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="mx-auto mt-10 max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28"
+            className="mx-auto  max-w-7xl sm:mt-12 sm:px-6 md:mt-16 lg:mt-4 lg:px-2 xl:mt-28"
           >
             <div className="sm:text-center lg:text-left">
               <motion.h1
@@ -67,45 +67,27 @@ function BannerSection() {
                 viewport={{ once: true }}
                 className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start"
               >
-                <GreenWhiteButton
-                  title="Explore our services"
-                  link="/services"
-                  className="text-lightBeige "
-                />
-                {/* <div className="rounded-md shadow">
-                  <a
-                    href="#"
-                    className="flex w-full items-center justify-center rounded-md border border-transparent px-8 py-3 text-base font-medium text-[#FFFFFF] hover:bg-[#80F495] md:py-4 md:px-10 md:text-lg"
-                  >
-                    Explore our services
-                  </a>
-                </div> */}
+              
                 <LightGreenButton
                   title="Contact us"
-                  link="/contact"
-                  className="mt-8 mx-8 text-lightBeige "
+                  link="/contacts"
+                  className="text-lightBeige  mt-4"
                 />
-                {/* <div className="mt-3 sm:mt-0 sm:ml-3">
-                  <a
-                    href="#"
-                    className="flex w-full items-center justify-center rounded-md border border-transparent bg-[#00DF82] px-8 py-3 text-base font-medium text-[#FFFFFF] hover:bg-[#2CC295] md:py-4 md:px-10 md:text-lg"
-                  >
-                    Contact us
-                  </a>
-                </div> */}
+              
               </motion.div>
             </div>
           </motion.main>
         </div>
       </div>
+
       <motion.div
         initial={{ opacity: 0, x: 20 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, delay: 0.8 }}
         viewport={{ once: true }}
-        className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2"
+        className="p-4 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 "
       >
-        <div className="grid grid-cols-3 gap-4 h-full">
+        <div className="grid grid-cols-3 gap-4 ">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -183,6 +165,7 @@ function BannerSection() {
           </motion.div>
         </div>
       </motion.div>
+      
     </div>
   );
 }
@@ -282,13 +265,14 @@ function HeaderSection() {
           ))}
         </motion.div>
       </div>
+   
     </div>
   );
 }
 
 function ServiceSection() {
   return (
-    <div className=" py-24 relative overflow-hidden">
+    <div className=" py-2 relative overflow-hidden">
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 0.1 }}
@@ -313,7 +297,7 @@ function ServiceSection() {
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-4xl font-extrabold text-center mb-16 text-[#FFFFFF] bg-clip-text text-transparent bg-darkGreenTextColor"
+          className="text-5xl font-extrabold text-center mb-4 text-darkGreenTextColor bg-clip-text  "
         >
           Elevate Your Business with Techserve
         </motion.h2>
@@ -406,7 +390,7 @@ function ServiceSection() {
 function FeatureSection() {
   return (
     <div className="">
-      <div className="py-20">
+      <div className="py-12">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -417,9 +401,9 @@ function FeatureSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-4xl font-extrabold text-center mb-16 text-darkGreenTextColor glow-text"
+            className="text-5xl font-extrabold text-center mb-8  sm:mb-12 text-darkGreenTextColor glow-text"
           >
-            Our Services in Detail
+            Our Services
           </motion.h2>
           <div className="space-y-24">
             {/* Web Development */}
@@ -631,7 +615,7 @@ function FeatureSection() {
 
 function BenefitsSection() {
   return (
-    <div className=" py-20">
+    <div className=" py-1 sm:py-12">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -642,7 +626,7 @@ function BenefitsSection() {
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-4xl font-extrabold text-center mb-16 text-darkGreenTextColor glow-text"
+          className="text-5xl font-extrabold text-center mb-4 sm:mb-8 text-darkGreenTextColor glow-text"
         >
           Why Choose Techserve
         </motion.h2>
@@ -721,7 +705,7 @@ function CallToActionSection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.8 }}
-        className="text-darkGreenTextColor py-16"
+        className="text-darkGreenTextColor py-12 bg-lightGreenColor mb-8 "
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.h2
@@ -738,24 +722,13 @@ function CallToActionSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-xl mb-8"
+            className="text-xl"
           >
             Let&apos;s discuss how our innovative tech solutions can empower
             your business and drive growth.
           </motion.p>
-          <GreenWhiteButton title="Get Started" link="/contacts" className="text-white"/>
-          {/* <motion.a
-            href="/contacts"
-            initial={{ scale: 0.9, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.4, delay: 0.6 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-block bg-darkGreenTextColor text-white font-bold py-3 px-8 rounded-full hover:bg-green2 transition duration-300"
-          >
-            Get Started
-          </motion.a> */}
+          <GreenWhiteButton title="Get Started" link="/contacts" className="text-white px-4 py-2 font-bold"/>
+       
         </div>
       </motion.div>
     </div>
