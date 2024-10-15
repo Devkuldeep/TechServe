@@ -32,121 +32,27 @@ function HeaderSection() {
   const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
 
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [cursorVariant, setCursorVariant] = useState("default");
-  const [isHovering, setIsHovering] = useState(false);
-
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-    };
-  }, []);
-
-  const variants = {
-    default: {
-      opacity: 1,
-      height: 32,
-      width: 32,
-      x: mousePosition.x - 16,
-      y: mousePosition.y - 16,
-      backgroundColor: "white",
-      mixBlendMode: "difference",
-    },
-    text: {
-      opacity: 1,
-      height: 150,
-      width: 150,
-      x: mousePosition.x - 75,
-      y: mousePosition.y - 75,
-      backgroundColor: "white",
-      mixBlendMode: "difference",
-    },
-  };
-
-  const textEnter = () => {
-    setCursorVariant("text");
-    setIsHovering(true);
-  };
-  const textLeave = () => {
-    setCursorVariant("default");
-    setIsHovering(false);
-  };
-
   return (
     <motion.div
       ref={ref}
-      style={{
-        opacity,
-        y,
-      }}
-      className="relative min-h-[calc(100vh-64px)] text-white overflow-hidden select-none"
+      style={{ opacity, y }}
+      className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-darkGreen-2 to-darkGreen text-darkGreenTextColor overflow-hidden"
     >
-      <motion.div
-        className="cursor fixed top-0 left-0 pointer-events-none z-50 rounded-full"
-        variants={variants}
-        animate={cursorVariant}
-        transition={{
-          type: "spring",
-          stiffness: 1000,
-          damping: 28,
-        }}
-      />
-      <motion.div
-        className="absolute inset-0"
-        animate={{
-          background: isHovering
-            ? `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(190, 18, 60, 0.5), rgba(50, 44, 140, 0.5), rgba(10, 10, 10, 0.5))`
-            : "none",
-        }}
-        transition={{ type: "tween", ease: "linear", duration: 0.2 }}
-        style={{
-          mixBlendMode: "overlay",
-        }}
-      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.h1
-          style={{
-            scale,
-          }}
-          className="text-7xl md:text-9xl font-extrabold mb-12 text-center leading-tight"
-          onMouseEnter={textEnter}
-          onMouseLeave={textLeave}
+          style={{ scale }}
+          className="text-6xl md:text-8xl font-extrabold mb-8 text-center leading-tight"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, staggerChildren: 0.1 }}
-          >
-            {["The", " ", "Techserve", " ", "Journey"].map((word, index) => (
-              <motion.span
-                key={index}
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={
-                  index === 2
-                    ? "inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#FF4D6D] to-[#4361EE]"
-                    : ""
-                }
-              >
-                {word}
-              </motion.span>
-            ))}
-          </motion.span>
+          The <span className="text-green">Techserve</span> Journey
         </motion.h1>
         <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: isInView ? 1 : 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-3xl md:text-4xl text-center max-w-4xl mx-auto font-light mb-16"
-          onMouseEnter={textEnter}
-          onMouseLeave={textLeave}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 20 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="text-2xl md:text-3xl text-center max-w-4xl mx-auto font-light mb-16"
         >
           From humble beginnings to industry leaders: Our mission to
           revolutionize digital solutions
@@ -154,69 +60,27 @@ function HeaderSection() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 20 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-16 text-center grid grid-cols-1 md:grid-cols-3 gap-12"
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8"
         >
-          <motion.div
-            className=" p-10 rounded-2xl shadow-lg transform hover:scale-105 transition-all duration-300"
-            whileHover={{
-              scale: 1.05,
-              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
-            }}
-            whileInView={{ backgroundColor: "#1F2937" }}
-            viewport={{ once: false, amount: 0.8 }}
-            onMouseEnter={textEnter}
-            onMouseLeave={textLeave}
-          >
-            <h3 className="text-2xl font-semibold mb-6 text-[#FF4D6D]">
-              Founded in 2010
-            </h3>
-            <p className="text-gray-200 text-lg">
-              Techserve was born from a vision to bridge the gap between
-              businesses and cutting-edge technology.
-            </p>
-          </motion.div>
-          <motion.div
-            className=" p-10 rounded-2xl shadow-lg transform hover:scale-105 transition-all duration-300"
-            whileHover={{
-              scale: 1.05,
-              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
-            }}
-            whileInView={{ backgroundColor: "#1F2937" }}
-            viewport={{ once: false, amount: 0.8 }}
-            onMouseEnter={textEnter}
-            onMouseLeave={textLeave}
-          >
-            <h3 className="text-2xl font-semibold mb-6 text-[#4361EE]">
-              Our Goal
-            </h3>
-            <p className="text-gray-200 text-lg">
-              To empower companies of all sizes with innovative, tailored
-              digital solutions that drive growth and success in the digital
-              age.
-            </p>
-          </motion.div>
-          <motion.div
-            className=" p-10 rounded-2xl shadow-lg transform hover:scale-105 transition-all duration-300"
-            whileHover={{
-              scale: 1.05,
-              boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
-            }}
-            whileInView={{ backgroundColor: "#1F2937" }}
-            viewport={{ once: false, amount: 0.8 }}
-            onMouseEnter={textEnter}
-            onMouseLeave={textLeave}
-          >
-            <h3 className="text-2xl font-semibold mb-6 text-[#FF4D6D]">
-              Today
-            </h3>
-            <p className="text-gray-200 text-lg">
-              We continue to push boundaries, staying at the forefront of
-              technological advancements to serve our clients better.
-            </p>
-          </motion.div>
+          {[
+            { title: "Founded in 2010", content: "Techserve was born from a vision to bridge the gap between businesses and cutting-edge technology." },
+            { title: "Our Goal", content: "To empower companies of all sizes with innovative, tailored digital solutions that drive growth and success in the digital age." },
+            { title: "Today", content: "We continue to push boundaries, staying at the forefront of technological advancements to serve our clients better." }
+          ].map((item, index) => (
+            <motion.div
+              key={index}
+              className="bg-darkGreen-3 p-8 rounded-xl shadow-lg"
+              whileHover={{ scale: 1.05, boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)" }}
+              transition={{ duration: 0.3 }}
+            >
+              <h3 className="text-2xl font-semibold mb-4 text-green-2">{item.title}</h3>
+              <p className="text-gray-300 text-lg">{item.content}</p>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
+      <div className="absolute inset-0 bg-[url('/images/tech-pattern.svg')] opacity-10"></div>
     </motion.div>
   );
 }
@@ -244,26 +108,13 @@ function AboutSection() {
       </h2>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       
-        {/* <motion.h2
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 50 }}
-          transition={{ duration: 0.3 }}
-          className="text-5xl font-bold mb-16 text-center text-darkGreenTextColor"
-        >
-          Our Mission{" "}
-          <span className="inline-block text-4xl font-bold mb-16 text-center text-transparent bg-clip-text">
-            {" "}
-            & Vision
-          </span>
-        </motion.h2> */}
-
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: isInView ? 1 : 0, x: isInView ? 0 : -50 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <h3 className="text-3xl font-semibold mb-6 text-[#4361EE]">
+            <h3 className="text-3xl font-semibold mb-6 text-darkGreenTextColor">
               Our Mission
             </h3>
             <p className="text-xl text-gray-300 leading-relaxed">
@@ -279,7 +130,7 @@ function AboutSection() {
             transition={{ duration: 0.6, delay: 0.6 }}
             className=" p-8 rounded-lg shadow-xl"
           >
-            <h3 className="text-3xl font-semibold mb-6 text-[#FF4D6D]">
+            <h3 className="text-3xl font-semibold mb-6 text-[##00DF82]">
               Our Vision
             </h3>
             <p className="text-xl text-gray-300 leading-relaxed">
@@ -297,7 +148,7 @@ function AboutSection() {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="mt-16  p-8 rounded-lg shadow-xl"
         >
-          <h3 className="text-3xl font-semibold mb-6 text-[#FF4D6D]">
+          <h3 className="text-3xl font-semibold mb-6 text-[##00DF82]">
             Our Approach
           </h3>
           <p className="text-xl text-gray-300 leading-relaxed">
@@ -306,19 +157,19 @@ function AboutSection() {
           </p>
           <ul className="mt-4 space-y-2 text-gray-300">
             <li className="flex items-center">
-              <span className="text-[#4361EE] mr-2">✓</span> Tailoring solutions
+              <span className="text-darkGreenTextColor mr-2">✓</span> Tailoring solutions
               to each client&apos;s unique needs
             </li>
             <li className="flex items-center">
-              <span className="text-[#4361EE] mr-2">✓</span> Staying ahead of
+              <span className="text-darkGreenTextColor mr-2">✓</span> Staying ahead of
               technological trends
             </li>
             <li className="flex items-center">
-              <span className="text-[#4361EE] mr-2">✓</span> Fostering long-term
+              <span className="text-darkGreenTextColor mr-2">✓</span> Fostering long-term
               partnerships with our clients
             </li>
             <li className="flex items-center">
-              <span className="text-[#4361EE] mr-2">✓</span> Delivering
+              <span className="text-darkGreenTextColor mr-2">✓</span> Delivering
               measurable results and ROI
             </li>
           </ul>
@@ -385,17 +236,17 @@ function ServicesSection() {
       style={{
         opacity,
       }}
-      className="py-20 "
+      className="py-4 "
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 50 }}
           transition={{ duration: 0.5 }}
-          className="text-5xl font-bold mb-16 text-center text-[#edecec]"
+          className="text-5xl font-bold mb-16 text-center text-darkGreenTextColor"
         >
           Our Cutting{" "}
-          <span className="text-4xl font-bold mb-16 text-center text-transparent bg-clip-text bg-gradient-to-r from-[#FF4D6D] to-[#4361EE]">
+          <span className="text-4xl font-bold mb-16 text-center text-darkGreenTextColor  bg-clip-text ">
             {" "}
             Edge Services
           </span>
@@ -411,7 +262,7 @@ function ServicesSection() {
               className=" p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
             >
               <div className="text-5xl mb-6">{service.icon}</div>
-              <h3 className="text-2xl font-semibold mb-4 text-[#4361EE]">
+              <h3 className="text-2xl font-semibold mb-4 text-[#1C3434]">
                 {service.name}
               </h3>
               <p className="text-gray-300 leading-relaxed">
@@ -463,10 +314,10 @@ function TeamSection() {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 50 }}
           transition={{ duration: 0.5 }}
-          className="text-5xl font-bold mb-16 text-center text-[#edecec]"
+            className="text-5xl font-bold mb-16 text-center text-darkGreenTextColor"
         >
           Meet Our{" "}
-          <span className="text-4xl font-bold mb-16 text-center text-transparent bg-clip-text ">
+          <span className="text-4xl font-bold mb-16 text-center text-darkGreenTextColor  bg-clip-text ">
             {" "}
             Visionary Team
           </span>
@@ -486,7 +337,7 @@ function TeamSection() {
                 className="w-full h-64 object-cover"
               />
               <div className="p-6">
-                <h3 className="text-2xl font-semibold mb-2 text-[#4361EE]">
+                <h3 className="text-2xl font-semibold mb-2 text-[#1C3434]">
                   {member.name}
                 </h3>
                 <p className="text-gray-300">{member.role}</p>
@@ -588,14 +439,14 @@ function CareersSection() {
     <motion.section
       ref={ref}
       style={{ opacity, y }}
-      className="py-24 relative overflow-hidden"
+      className="py-8 relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.h2
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 50 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-6xl font-bold mb-16 text-center text-transparent bg-clip-text "
+          className="text-5xl font-bold mb-8 text-center  bg-clip-text "
         >
           Join Our Innovative Team
         </motion.h2>
@@ -614,7 +465,7 @@ function CareersSection() {
               <div className="flex items-center mb-4">
                 <span className="text-4xl mr-4">{job.icon}</span>
                 <div>
-                  <h3 className="text-2xl font-semibold text-[#4361EE]">
+                  <h3 className="text-2xl font-semibold text-[#1C3434]">
                     {job.title}
                   </h3>
                   <p className="text-gray-400">{job.department}</p>
@@ -627,8 +478,8 @@ function CareersSection() {
               <motion.button
                 whileHover={{ scale: 1.05, backgroundColor: "#5651E5" }}
                 whileTap={{ scale: 0.95 }}
-                initial={{ backgroundColor: "#4338CA" }}
-                animate={{ backgroundColor: "#4338CA" }}
+                initial={{ backgroundColor: "#1C3434" }}
+                animate={{ backgroundColor: "#1C3434" }}
                 transition={{ duration: 0.3 }}
                 className="text-white py-2 px-6 rounded-md text-lg font-semibold"
               >
@@ -649,8 +500,8 @@ function CareersSection() {
           <motion.button
             whileHover={{ scale: 1.05, backgroundColor: "#5651E5" }}
             whileTap={{ scale: 0.95 }}
-            initial={{ backgroundColor: "#4338CA" }}
-            animate={{ backgroundColor: "#4338CA" }}
+            initial={{ backgroundColor: "#1C3434" }}
+            animate={{ backgroundColor: "#1C3434" }}
             transition={{ duration: 0.3 }}
             className="text-white py-3 px-8 rounded-md text-xl font-semibold shadow-lg"
           >
