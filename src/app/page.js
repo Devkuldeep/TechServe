@@ -8,7 +8,7 @@ import Image from 'next/image';
 import {LightGreenButton, WhiteButton, GreenWhiteButton} from "@/components/utilities/Buttons";
 export default function Home() {
   return (
-    <div className="bg-lightBeige">
+    <div className="pt-20">
       {/* //!EACH SECTION HAS A VIEW MORE OR KNOWMRE CURSER POINTER ON THE BOTTOM RIGHT OF THE SECTION */}
       <HeroSection />
       <ServiceSection />
@@ -43,17 +43,17 @@ function HeroSection() {
     initial={{ y: 50, opacity: 0 }}
     animate={{ y: 0, opacity: 1 }}
     transition={{ duration: 0.8 }}
-    className="bg-[#F4F1EA]"
+    className=""
   >
     <section
       className="relative  ">
       <h2 className="sr-only">Hero Section</h2>
       <div
-        className="absolute inset-0 sm:bg-transparent sm:from-[#F4F1EA]/95 sm:to-[#F4F1EA]/25 ltr:sm:bg-gradient-to-r rtl:sm:bg-gradient-to-l"
+        className="absolute inset-0"
       ></div>
 
       <div
-        className="relative mx-auto max-w-screen-xl px-4 py-32 sm:px-6 lg:flex lg:h-screen lg:items-center lg:px-8 md:pt-52"
+        className="relative mx-auto max-w-screen-xl px-4  sm:px-6 lg:flex  lg:items-center "
       >
         <div className="max-w-xl text-center ltr:sm:text-left rtl:sm:text-right lg:w-1/2">
           <motion.h1
@@ -446,7 +446,7 @@ function AboutSection() {
             <p className="mt-4 text-[#1C3434]">
               At Techserve, we&apos;re passionate about leveraging technology to drive business growth. With years of experience and a team of skilled professionals, we deliver innovative solutions tailored to your unique needs.
             </p>
-            <GreenWhiteButton title="Learn More" link="/about" className="text-white"/>
+            <GreenWhiteButton title="Learn More" link="/about" className="text-white px-4"/>
           </motion.div>
 
           <motion.div

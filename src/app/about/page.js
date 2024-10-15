@@ -8,7 +8,7 @@ export default function About() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="pt-16 overflow-hidden"
+      className="pt-12  overflow-hidden"
     >
       <HeaderSection />
       <AboutSection />
@@ -85,7 +85,7 @@ function HeaderSection() {
         opacity,
         y,
       }}
-      className="relative text-white py-16 md:py-40 overflow-hidden select-none"
+      className="relative min-h-[calc(100vh-64px)] text-white overflow-hidden select-none"
     >
       <motion.div
         className="cursor fixed top-0 left-0 pointer-events-none z-50 rounded-full"

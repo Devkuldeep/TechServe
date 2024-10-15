@@ -11,7 +11,7 @@ import {
 
 export default function Services() {
   return (
-    <div className="bg-lightBeige pt-20">
+    <div className=" pt-20">
       <BannerSection />
       <HeaderSection />
       <ServiceSection />

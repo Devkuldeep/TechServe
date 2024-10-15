@@ -7,7 +7,8 @@ import {LightGreenButton, WhiteButton, GreenWhiteButton} from "@/components/util
 export default function Contacts() {
   return (
     <div className=" min-h-screen pt-16">
-      <HeaderSection />      
+      <HeaderSection />   
+      {/* <BackgroundElements />    */}
       <ContactForm />
       <MapSection />
       <ContactInfoSection />
@@ -27,7 +28,7 @@ function HeaderSection() {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className="bg-white text-darkGreen py-24 min-h-screen relative overflow-hidden"
+      className=" text-darkGreen py-24  relative overflow-hidden"
     >
       <BackgroundElements />
       <ContentSection />

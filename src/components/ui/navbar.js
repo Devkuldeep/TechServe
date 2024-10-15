@@ -64,10 +64,11 @@ const Navbar = () => {
                         className={`px-3 py-2 text-sm font-medium transition-colors duration-100 inline-block relative z-10 ${
                           scrolled
                             ? pathname === item.href
-                              ? "text-white"
-                              : "text-white"
+                              ? "text-red-500 text-bold"
+                              : "text-blue-500"
+
                             : pathname === item.href
-                              ? "text-white"
+                              ? "text-yellow-500 text-bold"
                               : "text-darkGreenTextColor"
                         }`}
                         // ${scrolled ? ""text-white" " : "text-darkGreenTextColor"} `

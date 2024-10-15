@@ -44,7 +44,7 @@ function HeaderSection() {
       style={{
         opacity
       }}
-      className="py-12 min-h-screen flex flex-col items-center justify-center"
+      className="py-12  flex flex-col items-center justify-center"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h1 
