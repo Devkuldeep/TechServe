@@ -44,7 +44,7 @@ function HeaderSection() {
       style={{
         opacity
       }}
-      className="py-12  flex flex-col items-center justify-center"
+      className="py-8  flex flex-col items-center justify-center"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h1 
@@ -97,7 +97,7 @@ function HeaderSection() {
 
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl font-bold text-[#edecec] sm:text-4xl">Our Impact in Numbers</h2>
+          <h2 className="text-3xl font-bold text-darkGreenTextColor sm:text-4xl">Our Impact in Numbers</h2>
 
           <p className="mt-4 text-gray-300 sm:text-xl">
             We&apos;ve helped businesses across various industries achieve their goals through innovative technology solutions. Here&apos;s a snapshot of our impact.
@@ -162,7 +162,7 @@ function PopularProjectsSection() {
   return (
     <motion.section 
       ref={ref}
-      className="py-20 "
+      className="py-4 "
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2 
@@ -171,7 +171,7 @@ function PopularProjectsSection() {
           transition={{ duration: 0.5 }}
           className="text-4xl font-bold mb-12 text-center text-darkGreenTextColor"
         >
-          Popular <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF4D6D] to-[#4361EE]">Projects</span>
+          Popular <span className="text-transparent bg-clip-text bg-gradient-to-r from-green to-darkGreenTextColor">Projects</span>
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {popularProjects.map((project, index) => (
@@ -204,6 +204,9 @@ function ProjectCard({ title, description, image }) {
 }
 
 function ProjectTabs() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, amount: 0.2 });
+
   const [activeTab, setActiveTab] = useState("Web Development");
   const tabs = ["Web Development", "Mobile Development", "AI & Machine Learning", "Digital Marketing"];
 
@@ -231,8 +234,18 @@ function ProjectTabs() {
   };
 
   return (
-    <section className="py-20 ">
+    <section className="py-4 "
+    ref={ref}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <motion.h2 
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 50 }}
+          transition={{ duration: 0.5 }}
+          className="text-4xl font-bold mb-12 text-center text-darkGreenTextColor"
+        >
+          Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-green to-darkGreenTextColor">Works</span>
+        </motion.h2>
         <div className="mb-12">
           <nav className="flex space-x-4" aria-label="Project Categories">
             {tabs.map((tab) => (

@@ -246,7 +246,7 @@ function ServicesSection() {
           className="text-5xl font-bold mb-16 text-center text-darkGreenTextColor"
         >
           Our Cutting{" "}
-          <span className="text-4xl font-bold mb-16 text-center text-darkGreenTextColor  bg-clip-text ">
+          <span className="text-5xl font-bold mb-16 text-center text-darkGreenTextColor  bg-clip-text ">
             {" "}
             Edge Services
           </span>
@@ -317,7 +317,7 @@ function TeamSection() {
             className="text-5xl font-bold mb-16 text-center text-darkGreenTextColor"
         >
           Meet Our{" "}
-          <span className="text-4xl font-bold mb-16 text-center text-darkGreenTextColor  bg-clip-text ">
+          <span className="text-5xl font-bold mb-16 text-center text-darkGreenTextColor  bg-clip-text ">
             {" "}
             Visionary Team
           </span>
