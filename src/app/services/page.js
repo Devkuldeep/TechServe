@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useState, useEffect, useRef } from "react";
 import {
   LightGreenButton,
   WhiteButton,
@@ -10,15 +11,87 @@ import {
 } from "@/components/utilities/Buttons";
 
 export default function Services() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const cursorRef = useRef(null);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const gradientStyle = {
+    background: `radial-gradient(600px at ${mousePosition.x}px ${mousePosition.y + scrollPosition}px, rgba(0, 223, 130, 0.05), transparent 60%)`,
+  };
+
   return (
-    <div className=" pt-20 overflow-hidden">
+    <motion.div 
+      className="pt-20 relative min-h-screen overflow-hidden"
+      style={gradientStyle}
+      animate={{
+        background: `radial-gradient(600px at ${mousePosition.x}px ${mousePosition.y + scrollPosition}px, rgba(0, 223, 130, 0.15), transparent 80%)`,
+      }}
+      transition={{ type: "tween", ease: "linear", duration: 0.1 }}
+    >
+      <motion.div
+        ref={cursorRef}
+        className="pointer-events-none fixed top-0 left-0 w-6 h-6 bg-green z-50"
+        animate={{
+          x: mousePosition.x - 12,
+          y: mousePosition.y - 12,
+          scale: [1, 1.2, 1],
+          borderRadius: ["50%", "40%", "50%"],
+        }}
+        transition={{
+          type: "spring",
+          damping: 25,
+          stiffness: 300,
+          mass: 0.5,
+          borderRadius: {
+            duration: 0.8,
+            repeat: Infinity,
+            repeatType: "reverse",
+          },
+          scale: {
+            duration: 1,
+            repeat: Infinity,
+            repeatType: "reverse",
+          },
+        }}
+      >
+        <motion.div
+          className="w-full h-full bg-green rounded-full"
+          animate={{
+            scale: [1, 0.8, 1],
+            opacity: [0.7, 1, 0.7],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      </motion.div>
       <BannerSection />
       <HeaderSection />
       <ServiceSection />
       <FeatureSection />
       <BenefitsSection />
       <CallToActionSection />
-    </div>
+    </motion.div>
   );
 }
 
