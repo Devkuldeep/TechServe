@@ -39,7 +39,7 @@ export default function Services() {
 
   return (
     <motion.div 
-      className="pt-20 relative min-h-screen overflow-hidden"
+      className="pt-20 relative min-h-screen overflow-hidden cursor-default"
       style={gradientStyle}
       animate={{
         background: `radial-gradient(600px at ${mousePosition.x}px ${mousePosition.y + scrollPosition}px, rgba(0, 223, 130, 0.15), transparent 80%)`,

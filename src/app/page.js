@@ -83,6 +83,7 @@ export default function Home() {
       </motion.div>
       {/* //!EACH SECTION HAS A VIEW MORE OR KNOWMRE CURSER POINTER ON THE BOTTOM RIGHT OF THE SECTION */}
       <HeroSection />
+      {/* <MarqueeComponent /> */}
       <ServiceSection />
       <ProjectSection />
       <AboutSection />
@@ -93,9 +94,6 @@ export default function Home() {
     </motion.div>
   );
 }
-
-
-
 
 
 function HeroSection() {
@@ -114,7 +112,7 @@ function HeroSection() {
     initial={{ y: 50, opacity: 0 }}
     animate={{ y: 0, opacity: 1 }}
     transition={{ duration: 0.8 }}
-    className=""
+    className="cursor-default"
   >
     <section
       className="relative   flex items-center justify-center ">
@@ -139,7 +137,7 @@ function HeroSection() {
               }
             }}
           >
-            {["Empowering", "businesses", "with", "Innovative", "Tech", "Solutions"].map((word, index) => (
+            {["Empowering ", "businesses ", "with ", "Innovative ", "Tech ", "Solutions "].map((word, index) => (
               <motion.span
                 key={index}
                 className="inline-block"
@@ -170,10 +168,9 @@ function HeroSection() {
                       }
                     }}
                   >
-                    {char}
+                    {char === ' ' ? '\u00A0' : char}
                   </motion.span>
                 ))}
-                {" "}
               </motion.span>
             ))}
           </motion.h1>
@@ -205,7 +202,7 @@ function HeroSection() {
       
           <LightGreenButton title="About" link="/about"  className="" />
 
-            <WhiteButton title="Our Services" link="/services"  className="" />
+            <WhiteButton title="Services" link="/services"  className="" />
           </div>
         </div>
         <div className="mt-8 block lg:w-1/2 ">
@@ -215,7 +212,7 @@ function HeroSection() {
             transition={{ duration: 0.8, delay: 0.5 }}
           >
             <Image
-              src="/images/hero.png"
+              src="/images/image home.png"
               alt="Tech Solutions"
               width={600}
               height={400}
@@ -228,6 +225,31 @@ function HeroSection() {
   </motion.div>;
 }
 
+function MarqueeComponent() {
+  const logos = [
+    '/images/compney logo/logo1.jpg',
+    '/images/compney logo/logo2.jpg',
+    '/images/compney logo/logo3.jpg',
+  ];
+
+  return (
+    <div className="relative overflow-hidden bg-gray-300">
+      <div className="flex items-center justify-center w-full">
+        {logos.map((logo, index) => (
+          <div key={index} className="mx-8 w-20 h-20 overflow-hidden flex items-center justify-center">
+            <Image
+              src={logo}
+              alt={`Company logo ${index + 1}`}
+              width={80}
+              height={80}
+              className="object-contain transition-transform duration-300 hover:scale-110"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 
 function ServiceSection() {
@@ -567,10 +589,22 @@ function TestimonialSection() {
   ];
 
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsSmallScreen(window.innerWidth < 768); // Adjust this value as needed
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
 
   useEffect(() => {
     const totalWidth = testimonials.length * 100;
-    const scrollSpeed = 0.8; // Same scroll speed for both mobile and desktop
+    const scrollSpeed = isSmallScreen ? 0.8 : 0.2;
     const interval = setInterval(() => {
       setScrollPosition((prevPosition) => {
         const newPosition = prevPosition + scrollSpeed;
@@ -579,7 +613,7 @@ function TestimonialSection() {
     }, 50);
 
     return () => clearInterval(interval);
-  }, [testimonials.length]);
+  }, [testimonials.length, isSmallScreen]);
 
   return (
     <motion.div
@@ -727,10 +761,10 @@ function FAQSection() {
     style={{ opacity, y }}
   >
     <h2 className="text-4xl lg:text-6xl font-bold text-left text-[#1C3434] my-4 px-6">FAQ Section</h2>
-    <section className=" text-[#1C3434] user-select-none">
+    <section className="text-[#1C3434] user-select-none text-lg">
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
         <motion.h2
-          className="text-3xl font-bold sm:text-4xl"
+          className="text-4xl lg:text-5xl font-bold sm:text-4xl"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -766,14 +800,14 @@ function FAQSection() {
               <details className="group cursor-pointer">
                 <summary className="flex items-center justify-between py-4">
                   <motion.h3
-                    className="font-medium"
+                    className="font-medium text-xl lg:text-2xl"
                     whileHover={{ scale: 1.05, color: "#1C3434" }}
                     transition={{ type: "spring", stiffness: 300 }}
                   >
                     {faq.question}
                   </motion.h3>
                   <motion.svg
-                    className="ml-1.5 h-5 w-5 flex-shrink-0 transition duration-300 group-open:-rotate-180"
+                    className="ml-1.5 h-6 w-6 flex-shrink-0 transition duration-300 group-open:-rotate-180"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -785,7 +819,7 @@ function FAQSection() {
                   </motion.svg>
                 </summary>
                 <motion.p
-                  className="mt-4 leading-relaxed text-[#1C3434]"
+                  className="mt-4 leading-relaxed text-[#1C3434] text-lg lg:text-xl"
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}

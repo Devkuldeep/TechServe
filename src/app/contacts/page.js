@@ -33,7 +33,7 @@ export default function Contacts() {
 
   return (
     <motion.div 
-      className="pt-20 relative min-h-screen"
+      className=" relative min-h-screen cursor-default "
       style={gradientStyle}
       animate={{
         background: `radial-gradient(600px at ${mousePosition.x}px ${mousePosition.y + scrollPosition}px, rgba(0, 223, 130, 0.15), transparent 80%)`,
@@ -102,7 +102,7 @@ function HeaderSection() {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
-      className=" text-darkGreen py-12 md:py-24  relative overflow-hidden"
+      className=" text-darkGreen py-12 md:py-24  relative overflow-hidden  "
     >
       <BackgroundElements />
       <ContentSection />
@@ -415,6 +415,10 @@ function ContactForm() {
                   <input type="email" id="email" name="email" className="w-full px-3 py-2 rounded-md border-2 border-gray-600 focus:border-[#3D37AF] focus:ring-2 focus:ring-[#3D37AF]  text-gray-100 transition duration-200" />
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <label htmlFor="mobile" className="block text-sm font-medium text-gray-300 mb-1">Mobile Number</label>
+                  <input type="tel" id="mobile" name="mobile" pattern="[0-9]*" inputMode="numeric" className="w-full px-3 py-2 rounded-md border-2 border-gray-600 focus:border-[#3D37AF] focus:ring-2 focus:ring-[#3D37AF]  text-gray-100 transition duration-200" />
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <label htmlFor="service" className="block text-sm font-medium text-gray-300 mb-1">Service Interested In</label>
                   <select id="service" name="service" className="w-full px-3 py-2 rounded-md border-2 border-gray-600 focus:border-[#3D37AF] focus:ring-2 focus:ring-[#3D37AF]  text-gray-100 transition duration-200">
                     <option>Web Development</option>
@@ -516,8 +520,11 @@ function MapSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-4xl lg:text-5xl font-extrabold text-center mb-12 ">Find Us</h2>
         <div className="aspect-w-16 aspect-h-9">
+      
+
+
           <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1422937950147!2d-73.98731968459391!3d40.74844097932681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2supela%20bhilai%20Building!5e0!3m2!1sen!2sus!4v1629814510200!5m2!1sen!2sus" 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3718.9245329580576!2d81.3431550734638!3d21.234840980672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a2922b3f507ac99%3A0xb276f7d1a3d9c05!2sRungta%20College%20Of%20Engineering%20%26%20Technology!5e0!3m2!1sen!2sin!4v1729400685544!5m2!1sen!2sin"
             width="100%" 
             height="450" 
             style={{border:0}} 

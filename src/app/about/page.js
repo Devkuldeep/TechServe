@@ -31,7 +31,7 @@ export default function About() {
 
   return (
     <motion.div 
-      className="pt-20 relative min-h-screen"
+      className="pt-10 relative min-h-screen cursor-default"
       style={gradientStyle}
       animate={{
         background: `radial-gradient(600px at ${mousePosition.x}px ${mousePosition.y + scrollPosition}px, rgba(0, 223, 130, 0.15), transparent 80%)`,
@@ -85,10 +85,11 @@ export default function About() {
       >
         <HeaderSection />
         <AboutSection />
-        <ServicesSection />
-        <TeamSection />
         <ClientsSection />
-        <CareersSection />
+        {/* <ServicesSection /> */}
+        <TeamSection />
+       
+        {/* <CareersSection /> */}
       </motion.div>
     </motion.div>
   );

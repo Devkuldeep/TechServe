@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import Image from 'next/image';
 import Link from "next/link";
 
-export default function Projects() {
+export default function Works() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [scrollPosition, setScrollPosition] = useState(0);
   const cursorRef = useRef(null);
@@ -33,7 +33,7 @@ export default function Projects() {
 
   return (
     <motion.div 
-      className="pt-20 relative min-h-screen"
+      className="pt-10 relative min-h-screen cursor-default"
       style={gradientStyle}
       animate={{
         background: `radial-gradient(600px at ${mousePosition.x}px ${mousePosition.y + scrollPosition}px, rgba(0, 223, 130, 0.15), transparent 80%)`,
@@ -127,7 +127,7 @@ function HeaderSection() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-7xl font-bold mb-8 text-center text-darkGreen3"
         >
-          {["Our", "  ", "Projects"].map((word, wordIndex) => (
+          {["Our", "Projects"].map((word, wordIndex) => (
             <span key={wordIndex} className="inline-block">
               {word.split("").map((char, charIndex) => (
                 <motion.span
@@ -135,12 +135,12 @@ function HeaderSection() {
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.1 * (wordIndex * word.length + charIndex) }}
-                  className={wordIndex === 2 ? "text-transparent bg-clip-text bg-gradient-to-r from-green to-darkGreen3" : ""}
+                  className={wordIndex === 1 ? "text-transparent bg-clip-text bg-gradient-to-r from-green to-darkGreen3" : ""}
                 >
                   {char}
                 </motion.span>
               ))}
-              {" "}
+              {wordIndex === 0 ? <span className="inline-block">&nbsp;</span> : ""}
             </span>
           ))}
         </motion.h1>
@@ -158,9 +158,9 @@ function HeaderSection() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.05 * wordIndex }}
-                  className="inline-block"
+                  className="inline-block mr-1"
                 >
-                  {word}{" "}
+                  {word}
                 </motion.span>
               ))}
             </span>
