@@ -2,16 +2,24 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
+import { handleVisit } from './admin/VisitTracker';
 import Link from 'next/link';
 import Cards from "@/components/utilities/Cards";
 import Image from 'next/image';
 import {LightGreenButton, WhiteButton, GreenWhiteButton} from "@/components/utilities/Buttons";
+
+
 export default function Home() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [scrollPosition, setScrollPosition] = useState(0);
   const cursorRef = useRef(null);
 
+
+ 
+
+
   useEffect(() => {
+    
     const handleMouseMove = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
@@ -81,6 +89,7 @@ export default function Home() {
           }}
         />
       </motion.div>
+     
       {/* //!EACH SECTION HAS A VIEW MORE OR KNOWMRE CURSER POINTER ON THE BOTTOM RIGHT OF THE SECTION */}
       <HeroSection />
       {/* <MarqueeComponent /> */}
@@ -112,7 +121,7 @@ function HeroSection() {
     initial={{ y: 50, opacity: 0 }}
     animate={{ y: 0, opacity: 1 }}
     transition={{ duration: 0.8 }}
-    className="cursor-default"
+    className="cursor-default z-30"
   >
     <section
       className="relative   flex items-center justify-center ">
@@ -137,7 +146,7 @@ function HeroSection() {
               }
             }}
           >
-            {["Empowering ", "businesses ", "with ", "Innovative ", "Tech ", "Solutions "].map((word, index) => (
+            {["Empowering ", "businesses ", "with ", "Innovative ", "Digital ", "Solutions "].map((word, index) => (
               <motion.span
                 key={index}
                 className="inline-block"
@@ -214,8 +223,8 @@ function HeroSection() {
             <Image
               src="/images/image home.png"
               alt="Tech Solutions"
-              width={600}
-              height={400}
+              width={1000}
+              height={1000}
               className="rounded-lg shadow-lg"
             />
           </motion.div>
@@ -557,6 +566,8 @@ function AboutSection() {
   </motion.div>;
 }
 
+
+
 function TestimonialSection() {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -567,33 +578,43 @@ function TestimonialSection() {
   const opacity = useTransform(scrollYProgress, [0, 0.3], [0, 1]);
   const y = useTransform(scrollYProgress, [0, 0.5], [50, 0]);
 
-  const testimonials = [
-    {
-      name: "John Doe",
-      role: "CEO, TechCorp",
-      content: "Techserve&apos;s solutions have revolutionized our operations. Their expertise is unmatched!",
-      image: "https://randomuser.me/api/portraits/men/1.jpg"
-    },
-    {
-      name: "Jane Smith",
-      role: "Marketing Director, InnovateCo",
-      content: "The team at Techserve truly understands digital marketing. Our online presence has never been stronger.",
-      image: "https://randomuser.me/api/portraits/women/2.jpg"
-    },
-    {
-      name: "Mike Johnson",
-      role: "CTO, FutureTech",
-      content: "Implementing Techserve's custom software solution has increased our productivity tenfold.",
-      image: "https://randomuser.me/api/portraits/men/3.jpg"
+  const [testimonials, setTestimonials] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    async function fetchTestimonials() {
+      try {
+        const response = await fetch('http://localhost:5000/api/feedback', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setTestimonials(data);
+        setIsLoading(false);
+      } catch (e) {
+        console.error("Failed to fetch testimonials:", e);
+        setError("Failed to load testimonials. Please try again later.");
+        setIsLoading(false);
+      }
     }
-  ];
+
+    fetchTestimonials();
+  }, []);
 
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsSmallScreen(window.innerWidth < 768); // Adjust this value as needed
+      setIsSmallScreen(window.innerWidth < 768);
     };
 
     checkScreenSize();
@@ -603,6 +624,8 @@ function TestimonialSection() {
   }, []);
 
   useEffect(() => {
+    if (testimonials.length === 0) return;
+
     const totalWidth = testimonials.length * 100;
     const scrollSpeed = isSmallScreen ? 0.8 : 0.2;
     const interval = setInterval(() => {
@@ -615,6 +638,14 @@ function TestimonialSection() {
     return () => clearInterval(interval);
   }, [testimonials.length, isSmallScreen]);
 
+  if (isLoading) {
+    return <div>Loading testimonials...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
+
   return (
     <motion.div
       ref={ref}
@@ -624,7 +655,7 @@ function TestimonialSection() {
       transition={{ duration: 0.8 }}
     >
       <h2 className="text-4xl lg:text-6xl font-bold text-left text-[#1C3434] my-4 py-4 px-6">Testimonial</h2>
-      <section className="  text-[#1C3434] py-4 sm:py-12 w-full" >
+      <section className="text-[#1C3434] py-4 sm:py-12 w-full my-2">
         <h2 className="sr-only">Testimonial Section</h2>
         <div className="max-w-screen-xl px-4 mx-auto text-center lg:px-6">
           <motion.div
@@ -642,13 +673,13 @@ function TestimonialSection() {
           </motion.div>
           <div className="mt-8 overflow-hidden">
             <motion.div
-              className="flex"
+              className="flex mb-4"
               style={{
                 x: `-${scrollPosition}%`,
                 transition: "transform 0.05s linear",
               }}
             >
-                {[...testimonials, ...testimonials, ...testimonials].map((testimonial, index) => (
+              {[...testimonials, ...testimonials, ...testimonials, ...testimonials, ...testimonials].map((testimonial, index) => (
                 <motion.div
                   key={index}
                   className="p-6 bg-[#F4F1EA] rounded-lg shadow-xl flex-shrink-0 w-full md:w-1/2 lg:w-1/3"
@@ -656,14 +687,14 @@ function TestimonialSection() {
                 >
                   <img
                     className="w-20 h-20 mx-auto mb-4 rounded-full"
-                    src={testimonial.image}
+                    src={testimonial.image || "https://via.placeholder.com/80"}
                     alt={testimonial.name}
                     width={80}
                     height={80}
                   />
                   <h3 className="text-lg text-[#1C3434] font-semibold">{testimonial.name}</h3>
                   <p className="text-sm text-[#1C3434] mb-4">{testimonial.role}</p>
-                  <p className="text-[#1C3434]">{testimonial.content}</p>
+                  <p className="text-[#1C3434]">{testimonial.message}</p>
                   <div className="flex justify-center mt-4">
                     {[...Array(5)].map((_, i) => (
                       <svg

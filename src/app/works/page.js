@@ -4,6 +4,9 @@ import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import Image from 'next/image';
 import Link from "next/link";
 
+import Feedback from '@/components/ui/feedback';
+
+
 export default function Works() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -88,6 +91,7 @@ export default function Works() {
         <HeaderSection />
         <PopularProjectsSection />
         <ProjectTabs />
+        <Feedback />
         <CallToActionSection />
       </motion.div>
     </motion.div>

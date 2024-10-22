@@ -1,9 +1,11 @@
 'use client'
 
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import {LightGreenButton, WhiteButton, GreenWhiteButton} from "@/components/utilities/Buttons";
+import axios from 'axios';
+
 export default function Contacts() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -368,8 +370,42 @@ function ContactInfoSection() {
 }
 
 function ContactForm() {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    mobile: '',
+    service: 'Web Development',
+    message: ''
+  });
+  const [submitStatus, setSubmitStatus] = useState(null);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:5000/api/submit-inquiry', formData);
+      console.log('Form submitted successfully:', response.data);
+      setSubmitStatus('success');
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        mobile: '',
+        service: 'Web Development',
+        message: ''
+      });
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitStatus('error');
+    }
+  };
+
   return (
-    <section id='contact-form' className="  relative overflow-hidden">
+    <section id='contact-form' className="relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           className="text-center mb-2 md:mb-12"
@@ -378,14 +414,14 @@ function ContactForm() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl  md:text-5xl  font-extrabold mb-4 bg-clip-text  bg-darkGreenTextColor">
+          <h2 className="text-3xl md:text-5xl font-extrabold mb-4 bg-clip-text bg-darkGreenTextColor">
             Let&apos;s Create Something Amazing
           </h2>
           <p className="text-xl text-gray-300">We&apos;re excited to hear about your project. Reach out and let&apos;s innovate together!</p>
         </motion.div>
         
         <motion.div 
-          className=" rounded-lg shadow-2xl overflow-hidden"
+          className="rounded-lg shadow-2xl overflow-hidden"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -399,28 +435,28 @@ function ContactForm() {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <form className="space-y-6">
+              <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="flex space-x-4">
                   <motion.div className="flex-1" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                     <label htmlFor="firstName" className="block text-sm font-medium text-gray-300 mb-1">First Name</label>
-                    <input type="text" id="firstName" name="firstName" className="w-full px-3 py-2 rounded-md border-2 border-gray-600 focus:border-[#3D37AF] focus:ring-2 focus:ring-[#3D37AF]  text-gray-100 transition duration-200" />
+                    <input type="text" id="firstName" name="firstName" value={formData.firstName} onChange={handleChange} className="w-full px-3 py-2 rounded-md border-2 border-gray-600 focus:border-[#3D37AF] focus:ring-2 focus:ring-[#3D37AF] text-gray-100 transition duration-200" />
                   </motion.div>
                   <motion.div className="flex-1" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                     <label htmlFor="lastName" className="block text-sm font-medium text-gray-300 mb-1">Last Name</label>
-                    <input type="text" id="lastName" name="lastName" className="w-full px-3 py-2 rounded-md border-2 border-gray-600 focus:border-[#3D37AF] focus:ring-2 focus:ring-[#3D37AF]  text-gray-100 transition duration-200" />
+                    <input type="text" id="lastName" name="lastName" value={formData.lastName} onChange={handleChange} className="w-full px-3 py-2 rounded-md border-2 border-gray-600 focus:border-[#3D37AF] focus:ring-2 focus:ring-[#3D37AF] text-gray-100 transition duration-200" />
                   </motion.div>
                 </div>
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">Email</label>
-                  <input type="email" id="email" name="email" className="w-full px-3 py-2 rounded-md border-2 border-gray-600 focus:border-[#3D37AF] focus:ring-2 focus:ring-[#3D37AF]  text-gray-100 transition duration-200" />
+                  <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} className="w-full px-3 py-2 rounded-md border-2 border-gray-600 focus:border-[#3D37AF] focus:ring-2 focus:ring-[#3D37AF] text-gray-100 transition duration-200" />
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <label htmlFor="mobile" className="block text-sm font-medium text-gray-300 mb-1">Mobile Number</label>
-                  <input type="tel" id="mobile" name="mobile" pattern="[0-9]*" inputMode="numeric" className="w-full px-3 py-2 rounded-md border-2 border-gray-600 focus:border-[#3D37AF] focus:ring-2 focus:ring-[#3D37AF]  text-gray-100 transition duration-200" />
+                  <input type="tel" id="mobile" name="mobile" pattern="[0-9]*" inputMode="numeric" value={formData.mobile} onChange={handleChange} className="w-full px-3 py-2 rounded-md border-2 border-gray-600 focus:border-[#3D37AF] focus:ring-2 focus:ring-[#3D37AF] text-gray-100 transition duration-200" />
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <label htmlFor="service" className="block text-sm font-medium text-gray-300 mb-1">Service Interested In</label>
-                  <select id="service" name="service" className="w-full px-3 py-2 rounded-md border-2 border-gray-600 focus:border-[#3D37AF] focus:ring-2 focus:ring-[#3D37AF]  text-gray-100 transition duration-200">
+                  <select id="service" name="service" value={formData.service} onChange={handleChange} className="w-full px-3 py-2 rounded-md border-2 border-gray-600 focus:border-[#3D37AF] focus:ring-2 focus:ring-[#3D37AF] text-gray-100 transition duration-200">
                     <option>Web Development</option>
                     <option>App Development</option>
                     <option>UI/UX Design</option>
@@ -431,7 +467,7 @@ function ContactForm() {
                 </motion.div>
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">Project Details</label>
-                  <textarea id="message" name="message" rows="4" className="w-full px-3 py-2 rounded-md border-2 border-gray-600 focus:border-[#3D37AF] focus:ring-2 focus:ring-[#3D37AF]  text-gray-100 transition duration-200"></textarea>
+                  <textarea id="message" name="message" rows="4" value={formData.message} onChange={handleChange} className="w-full px-3 py-2 rounded-md border-2 border-gray-600 focus:border-[#3D37AF] focus:ring-2 focus:ring-[#3D37AF] text-gray-100 transition duration-200"></textarea>
                 </motion.div>
                 <motion.div 
                   whileHover={{ scale: 1.05 }} 
