@@ -139,9 +139,9 @@ function HeaderSection() {
           className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8"
         >
           {[
-            { title: "Founded in 2010", content: "Techserve was born from a vision to bridge the gap between businesses and cutting-edge technology." },
-            { title: "Our Goal", content: "To empower companies of all sizes with innovative, tailored digital solutions that drive growth and success in the digital age." },
-            { title: "Today", content: "We continue to push boundaries, staying at the forefront of technological advancements to serve our clients better." }
+            { title: "Founded in 2023", content: "Techserve originated from a vision to connect startups and small businesses with the Digital World." },
+            { title: "Our Goal", content: "To empower startups, small businesses, and companies with innovative, tailored digital solutions that drive growth and success in the digital age." },
+            { title: "Today", content: "we’re constantly pushing boundaries, staying ahead of the digital curve to bring our clients innovative solutions and unmatched service." }
           ].map((item, index) => (
             <motion.div
               key={index}
@@ -193,10 +193,7 @@ function AboutSection() {
               Our Mission
             </h3>
             <p className="text-xl text-gray-300 leading-relaxed">
-              At Techserve, we are dedicated to empowering businesses with
-              cutting-edge digital solutions. Our mission is to bridge the gap
-              between innovative technology and business needs, driving growth
-              and success in the digital age.
+            At Techserve, we are dedicated to empowering startups and small businesses with cutting-edge digital solutions. Our mission is to bridge the gap between innovative technology and business needs, driving growth and success in the digital age.
             </p>
           </motion.div>
           <motion.div
@@ -209,11 +206,7 @@ function AboutSection() {
               Our Vision
             </h3>
             <p className="text-xl text-gray-300 leading-relaxed">
-              We envision a future where every business, regardless of size, can
-              harness the full potential of technology. Our goal is to be at the
-              forefront of digital innovation, continuously pushing boundaries
-              to provide unparalleled solutions that transform industries and
-              drive global progress.
+            We imagine a tomorrow where all companies. Big or small. Can fully utilize the power of technology to its potential. Our objective is to lead the way, in advancements by constantly pushing limits and offering ground breaking solutions that revolutionize industries and contribute to worldwide advancement.
             </p>
           </motion.div>
         </div>
@@ -354,28 +347,28 @@ function ServicesSection() {
 function TeamSection() {
   const team = [
     {
-      name: "Alex Johnson",
+      name: "Anup Mahato",
       role: "CEO & Founder",
       image:
         "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     },
     {
-      name: "Sarah Lee",
+      name: "Omkar Soni ",
       role: "CTO",
       image:
-        "https://images.pexels.com/photos/3796217/pexels-photo-3796217.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     },
     {
-      name: "Michael Chen",
-      role: "Lead Designer",
-      image:
-        "https://images.pexels.com/photos/3785079/pexels-photo-3785079.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-    },
-    {
-      name: "Emily Rodriguez",
-      role: "Head of Marketing",
+      name: "R Janvi ",
+      role: "SOCIAL MEDIA MANAGER",
       image:
         "https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+    },
+    {
+      name: "Kuldeep Patel",
+      role: "Full Developer",
+      image:
+        "https://images.pexels.com/photos/4974915/pexels-photo-4974915.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
     },
   ];
 
@@ -427,12 +420,11 @@ function TeamSection() {
 
 function ClientsSection() {
   const clients = [
-    { name: "TechCorp" },
-    { name: "InnovateTech" },
-    { name: "FutureSystems" },
-    { name: "GlobalTech" },
-    { name: "NextGen Solutions" },
-    { name: "SmartTech" },
+    { name: "Investt Plus" },
+    { name: "One Cup" },
+    { name: "Print Mine" },
+    { name: "Relwani Automotives" },
+    { name: "Zipper" },
   ];
 
   const ref = useRef(null);

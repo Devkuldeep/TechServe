@@ -116,7 +116,7 @@ function BannerSection() {
                 className="text-4xl font-bold tracking-tight text-darkGreenTextColor sm:text-5xl "
               >
                 <span className="block xl:inline">
-                  Empowering businesses with
+                  Empowering startups and small businesses with
                 </span>{" "}
                 <span className="block xl:inline">
                   high-quality digital solutions
@@ -129,8 +129,8 @@ function BannerSection() {
                 viewport={{ once: true }}
                 className="mt-3 text-base text-lightGreenTextColor sm:mx-auto sm:mt-5 sm:max-w-xl sm:text-lg md:mt-5 md:text-lg lg:mx-0"
               >
-                Techserve offers a wide range of innovative tech solutions, from
-                web development to digital marketing, designed to optimize your
+                Techserve offers a wide range of innovative digital solutions, from
+                marketing to digitization, designed to optimize your
                 online presence and drive business growth.
               </motion.p>
               <motion.div
@@ -261,9 +261,9 @@ function HeaderSection() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-6xl font-extrabold text-center mb-8 bg-clip-text text-transparent bg-darkGreenTextColor"
+          className="text-6xl font-extrabold text-center mb-4 text-darkGreenTextColor"
         >
-          Innovative Tech Solutions
+          Innovative Digital Solutions
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}

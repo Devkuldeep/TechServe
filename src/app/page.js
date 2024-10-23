@@ -9,6 +9,7 @@ import Image from 'next/image';
 import {LightGreenButton, WhiteButton, GreenWhiteButton} from "@/components/utilities/Buttons";
 
 
+
 export default function Home() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -481,6 +482,7 @@ function ProjectSection() {
   };
 
   return (
+
     <motion.div
       ref={ref}
       initial="hidden"
@@ -490,6 +492,8 @@ function ProjectSection() {
     >
       <h2 className="text-4xl lg:text-6xl font-bold text-left text-[#1C3434] my-4 py-4 px-6">Project Section</h2>
       
+         {/* <ThreeDCardDemo/> */}
+
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
@@ -511,6 +515,8 @@ function ProjectSection() {
           ))}
         </div>
       </div>
+
+
     </motion.div>
   );
 }
@@ -541,7 +547,7 @@ function AboutSection() {
           >
             <h2 className="text-3xl font-bold sm:text-4xl text-[#1C3434]"> Techserve</h2>
             <p className="mt-4 text-[#1C3434]">
-              At Techserve, we&apos;re passionate about leveraging technology to drive business growth. With years of experience and a team of skilled professionals, we deliver innovative solutions tailored to your unique needs.
+              At Techserve, we&apos;re passionate about leveraging digital technology to drive business growth. With years of experience and a team of skilled professionals, we deliver innovative solutions tailored to your unique needs.
             </p>
             <GreenWhiteButton title="Know More" link="/about" className=" px-4 mt-8"/>
           </motion.div>
@@ -817,7 +823,7 @@ function FAQSection() {
               answer: "Techserve has experience working with a diverse range of industries including e-commerce, healthcare, finance, education, and more. Our versatile team adapts our solutions to meet the specific requirements of each sector."
             },
             {
-              question: "How can Techserve help improve my business&apos;s online presence?",
+              question: "How can Techserve help improve my business's online presence?",
               answer: "We offer comprehensive digital marketing services, including SEO, social media management, and content creation. Our strategies are designed to increase your online visibility, engage your target audience, and drive conversions."
             }
           ].map((faq, index) => (

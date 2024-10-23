@@ -131,7 +131,7 @@ function HeaderSection() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-7xl font-bold mb-8 text-center text-darkGreen3"
         >
-          {["Our", "Projects"].map((word, wordIndex) => (
+          {["Success", "Stories"].map((word, wordIndex) => (
             <span key={wordIndex} className="inline-block">
               {word.split("").map((char, charIndex) => (
                 <motion.span
@@ -154,7 +154,7 @@ function HeaderSection() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="text-2xl text-gray-300 text-center max-w-4xl mx-auto"
         >
-          {["Explore our portfolio of innovative solutions and successful projects across various domains. From web applications to mobile apps, we've delivered cutting-edge technology to businesses of all sizes."].map((sentence, sentenceIndex) => (
+          {["Explore our portfolio of innovative solutions and successful projects across various domains. we've delivered cutting-edge digital solutions to startups and small businesses."].map((sentence, sentenceIndex) => (
             <span key={sentenceIndex} className="inline-block">
               {sentence.split(" ").map((word, wordIndex) => (
                 <motion.span
@@ -178,7 +178,7 @@ function HeaderSection() {
           <h2 className="text-3xl font-bold text-darkGreenTextColor sm:text-4xl">Our Impact in Numbers</h2>
 
           <p className="mt-4 text-gray-300 sm:text-xl">
-            We&apos;ve helped businesses across various industries achieve their goals through innovative technology solutions. Here&apos;s a snapshot of our impact.
+            We&apos;ve helped businesses across various industries achieve their goals through innovative digital solutions. Here&apos;s a snapshot of our impact.
           </p>
         </div>
 
@@ -188,25 +188,25 @@ function HeaderSection() {
           <div className="flex flex-col px-4 py-8 text-center">
             <dt className="order-last text-lg font-medium text-gray-400">Projects Completed</dt>
 
-            <dd className="text-4xl font-extrabold text-darkGreenTextColor md:text-5xl">100+</dd>
+            <dd className="text-4xl font-extrabold text-darkGreenTextColor md:text-5xl">5+</dd>
           </div>
 
           <div className="flex flex-col px-4 py-8 text-center">
             <dt className="order-last text-lg font-medium text-gray-400">Client Satisfaction</dt>
 
-            <dd className="text-4xl font-extrabold text-darkGreenTextColor md:text-5xl">98%</dd>
+            <dd className="text-4xl font-extrabold text-darkGreenTextColor md:text-5xl">100%</dd>
           </div>
 
           <div className="flex flex-col px-4 py-8 text-center">
             <dt className="order-last text-lg font-medium text-gray-400">Team Members</dt>
 
-            <dd className="text-4xl font-extrabold text-darkGreenTextColor md:text-5xl">50+</dd>
+            <dd className="text-4xl font-extrabold text-darkGreenTextColor md:text-5xl">7+</dd>
           </div>
 
           <div className="flex flex-col px-4 py-8 text-center">
             <dt className="order-last text-lg font-medium text-gray-400">Years of Experience</dt>
 
-            <dd className="text-4xl font-extrabold text-darkGreenTextColor md:text-5xl">10+</dd>
+            <dd className="text-4xl font-extrabold text-darkGreenTextColor md:text-5xl">1+</dd>
           </div>
         </dl>
       </div>
