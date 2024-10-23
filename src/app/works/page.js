@@ -4,18 +4,96 @@ import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import Image from 'next/image';
 import Link from "next/link";
 
-export default function Projects() {
+import Feedback from '@/components/ui/feedback';
+
+
+export default function Works() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const cursorRef = useRef(null);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const gradientStyle = {
+    background: `radial-gradient(600px at ${mousePosition.x}px ${mousePosition.y + scrollPosition}px, rgba(0, 223, 130, 0.05), transparent 60%)`,
+  };
+
   return (
     <motion.div 
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="pt-16 overflow-hidden"
+      className="pt-10 relative min-h-screen cursor-default"
+      style={gradientStyle}
+      animate={{
+        background: `radial-gradient(600px at ${mousePosition.x}px ${mousePosition.y + scrollPosition}px, rgba(0, 223, 130, 0.15), transparent 80%)`,
+      }}
+      transition={{ type: "tween", ease: "linear", duration: 0.1 }}
     >
-      <HeaderSection />
-      <PopularProjectsSection />
-      <ProjectTabs />
-      <CallToActionSection />
+      <motion.div
+        ref={cursorRef}
+        className="pointer-events-none fixed top-0 left-0 w-6 h-6 bg-green z-50"
+        animate={{
+          x: mousePosition.x - 12,
+          y: mousePosition.y - 12,
+          scale: [1, 1.2, 1],
+          borderRadius: ["50%", "40%", "50%"],
+        }}
+        transition={{
+          type: "spring",
+          damping: 25,
+          stiffness: 300,
+          mass: 0.5,
+          borderRadius: {
+            duration: 0.8,
+            repeat: Infinity,
+            repeatType: "reverse",
+          },
+          scale: {
+            duration: 1,
+            repeat: Infinity,
+            repeatType: "reverse",
+          },
+        }}
+      >
+        <motion.div
+          className="w-full h-full bg-green rounded-full"
+          animate={{
+            scale: [1, 0.8, 1],
+            opacity: [0.7, 1, 0.7],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      </motion.div>
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="pt-16 overflow-hidden"
+      >
+        <HeaderSection />
+        <PopularProjectsSection />
+        <ProjectTabs />
+        <Feedback />
+        <CallToActionSection />
+      </motion.div>
     </motion.div>
   );
 }
@@ -28,7 +106,11 @@ function HeaderSection() {
     offset: ["start end", "end start"]
   });
 
-  const opacity = useTransform(scrollYProgress, [0.2, 0.4], [0, 1]);
+  // This line creates a dynamic opacity value based on the scroll progress
+  // It uses the useTransform hook from framer-motion to map scroll values to opacity values
+  // As the user scrolls from 0% to 10% of the section, the opacity increases from 0 to 1
+  // This creates a fade-in effect as the user starts scrolling into the section
+  const opacity = useTransform(scrollYProgress, [0.0, 0.1], [0, 1]);
   const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
 
   return (
@@ -40,16 +122,16 @@ function HeaderSection() {
       style={{
         opacity
       }}
-      className="py-12 bg-[#0A0A0A] min-h-screen flex flex-col items-center justify-center"
+      className="py-8  flex flex-col items-center justify-center"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h1 
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 50 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-7xl font-bold mb-8 text-center text-[#edecec]"
+          className="text-7xl font-bold mb-8 text-center text-darkGreen3"
         >
-          {["Our", " ", "Projects"].map((word, wordIndex) => (
+          {["Success", "Stories"].map((word, wordIndex) => (
             <span key={wordIndex} className="inline-block">
               {word.split("").map((char, charIndex) => (
                 <motion.span
@@ -57,12 +139,12 @@ function HeaderSection() {
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.1 * (wordIndex * word.length + charIndex) }}
-                  className={wordIndex === 2 ? "text-transparent bg-clip-text bg-gradient-to-r from-[#FF4D6D] to-[#4361EE]" : ""}
+                  className={wordIndex === 1 ? "text-transparent bg-clip-text bg-gradient-to-r from-green to-darkGreen3" : ""}
                 >
                   {char}
                 </motion.span>
               ))}
-              {" "}
+              {wordIndex === 0 ? <span className="inline-block">&nbsp;</span> : ""}
             </span>
           ))}
         </motion.h1>
@@ -72,7 +154,7 @@ function HeaderSection() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="text-2xl text-gray-300 text-center max-w-4xl mx-auto"
         >
-          {["Explore our portfolio of innovative solutions and successful projects across various domains. From web applications to mobile apps, we've delivered cutting-edge technology to businesses of all sizes."].map((sentence, sentenceIndex) => (
+          {["Explore our portfolio of innovative solutions and successful projects across various domains. we've delivered cutting-edge digital solutions to startups and small businesses."].map((sentence, sentenceIndex) => (
             <span key={sentenceIndex} className="inline-block">
               {sentence.split(" ").map((word, wordIndex) => (
                 <motion.span
@@ -80,9 +162,9 @@ function HeaderSection() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.05 * wordIndex }}
-                  className="inline-block"
+                  className="inline-block mr-1"
                 >
-                  {word}{" "}
+                  {word}
                 </motion.span>
               ))}
             </span>
@@ -93,10 +175,10 @@ function HeaderSection() {
 
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl font-bold text-[#edecec] sm:text-4xl">Our Impact in Numbers</h2>
+          <h2 className="text-3xl font-bold text-darkGreenTextColor sm:text-4xl">Our Impact in Numbers</h2>
 
           <p className="mt-4 text-gray-300 sm:text-xl">
-            We&apos;ve helped businesses across various industries achieve their goals through innovative technology solutions. Here&apos;s a snapshot of our impact.
+            We&apos;ve helped businesses across various industries achieve their goals through innovative digital solutions. Here&apos;s a snapshot of our impact.
           </p>
         </div>
 
@@ -106,25 +188,25 @@ function HeaderSection() {
           <div className="flex flex-col px-4 py-8 text-center">
             <dt className="order-last text-lg font-medium text-gray-400">Projects Completed</dt>
 
-            <dd className="text-4xl font-extrabold text-[#4361EE] md:text-5xl">100+</dd>
+            <dd className="text-4xl font-extrabold text-darkGreenTextColor md:text-5xl">5+</dd>
           </div>
 
           <div className="flex flex-col px-4 py-8 text-center">
             <dt className="order-last text-lg font-medium text-gray-400">Client Satisfaction</dt>
 
-            <dd className="text-4xl font-extrabold text-[#4361EE] md:text-5xl">98%</dd>
+            <dd className="text-4xl font-extrabold text-darkGreenTextColor md:text-5xl">100%</dd>
           </div>
 
           <div className="flex flex-col px-4 py-8 text-center">
             <dt className="order-last text-lg font-medium text-gray-400">Team Members</dt>
 
-            <dd className="text-4xl font-extrabold text-[#4361EE] md:text-5xl">50+</dd>
+            <dd className="text-4xl font-extrabold text-darkGreenTextColor md:text-5xl">7+</dd>
           </div>
 
           <div className="flex flex-col px-4 py-8 text-center">
             <dt className="order-last text-lg font-medium text-gray-400">Years of Experience</dt>
 
-            <dd className="text-4xl font-extrabold text-[#4361EE] md:text-5xl">10+</dd>
+            <dd className="text-4xl font-extrabold text-darkGreenTextColor md:text-5xl">1+</dd>
           </div>
         </dl>
       </div>
@@ -158,16 +240,16 @@ function PopularProjectsSection() {
   return (
     <motion.section 
       ref={ref}
-      className="py-20 bg-[#1A2332]"
+      className="py-4 "
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.h2 
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 50 }}
           transition={{ duration: 0.5 }}
-          className="text-4xl font-bold mb-12 text-center text-[#edecec]"
+          className="text-4xl font-bold mb-12 text-center text-darkGreenTextColor"
         >
-          Popular <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF4D6D] to-[#4361EE]">Projects</span>
+          Popular <span className="text-transparent bg-clip-text bg-gradient-to-r from-green to-darkGreenTextColor">Projects</span>
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {popularProjects.map((project, index) => (
@@ -187,12 +269,12 @@ function PopularProjectsSection() {
 function ProjectCard({ title, description, image }) {
   return (
     <motion.div 
-      className="bg-gradient-to-br from-[#141C2B] to-[#1F2937] rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden"
+      className="rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden"
       whileHover={{ scale: 1.05 }}
     >
       <Image src={image} alt={title} width={400} height={200} className="w-full h-48 object-cover" />
       <div className="p-6">
-        <h3 className="text-xl font-semibold mb-2 text-[#4361EE]">{title}</h3>
+        <h3 className="text-xl font-semibold mb-2 text-darkGreenTextColor">{title}</h3>
         <p className="text-gray-300">{description}</p>
       </div>
     </motion.div>
@@ -200,6 +282,9 @@ function ProjectCard({ title, description, image }) {
 }
 
 function ProjectTabs() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, amount: 0.2 });
+
   const [activeTab, setActiveTab] = useState("Web Development");
   const tabs = ["Web Development", "Mobile Development", "AI & Machine Learning", "Digital Marketing"];
 
@@ -227,8 +312,18 @@ function ProjectTabs() {
   };
 
   return (
-    <section className="py-20 bg-[#111824]">
+    <section className="py-4 "
+    ref={ref}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <motion.h2 
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 50 }}
+          transition={{ duration: 0.5 }}
+          className="text-4xl font-bold mb-12 text-center text-darkGreenTextColor"
+        >
+          Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-green to-darkGreenTextColor">Works</span>
+        </motion.h2>
         <div className="mb-12">
           <nav className="flex space-x-4" aria-label="Project Categories">
             {tabs.map((tab) => (
@@ -237,8 +332,8 @@ function ProjectTabs() {
                 onClick={() => setActiveTab(tab)}
                 className={`px-3 py-2 font-medium text-sm rounded-md ${
                   activeTab === tab
-                    ? "bg-[#4361EE] text-white"
-                    : "text-gray-300 hover:bg-[#1A2332] hover:text-white"
+                    ? "bg-darkGreenTextColor text-white"
+                    : "text-gray-300 hover:bg-darkGreenTextColor hover:text-white"
                 }`}
               >
                 {tab}
@@ -263,12 +358,12 @@ function ProjectTabs() {
 
 function CallToActionSection() {
   return (
-    <section className="py-20 bg-gradient-to-b from-[#111824] to-[#1A2332]">
+    <section className="py-20 ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-4xl font-bold mb-8 text-[#edecec]">Ready to Start Your Next Project?</h2>
+        <h2 className="text-4xl font-bold mb-8 text-darkGreenTextColor">Ready to Start Your Next Project?</h2>
         <Link
           href="contacts"
-          className="inline-block bg-gradient-to-r from-[#5f58e6] to-[#4361EE] text-white px-8 py-3 rounded-md font-semibold text-lg hover:opacity-90 transition-opacity duration-300"
+          className="inline-block bg-darkGreenTextColor text-white px-8 py-3 rounded-md font-semibold text-lg hover:opacity-90 transition-opacity duration-300"
          
         >
           Contact Us
